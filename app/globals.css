@@ -1,0 +1,84 @@
+/* Hallmark · macrostructure: dark technical marquee · tone: technical/industrial
+ * theme: brand-locked (brandassets) · paper: white + jet-black bands · accent: Aerospace Red #E31B23
+ * display: Raleway · body: Open Sans · nav: double-decker utility bar · footer: statement + CTA band
+ * Hallmark · pre-emit critique: P4 H5 E4 S5 R4 V4
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-jet: #0d0d0d;
+  --color-charcoal: #333333;
+  --color-aerored: #e31b23;
+  --color-silver: #bfc3c7;
+  --color-white: #ffffff;
+}
+
+html,
+body {
+  overflow-x: clip;
+}
+
+body {
+  @apply bg-white text-charcoal font-body antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  @apply font-heading text-jet;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+::selection {
+  background: var(--color-aerored);
+  color: var(--color-white);
+}
+
+@layer components {
+  .wrap {
+    @apply mx-auto w-full max-w-wrap px-5 sm:px-8;
+  }
+  .eyebrow {
+    @apply font-heading text-xs font-bold uppercase tracking-[0.22em] text-aerored;
+  }
+  .h-display {
+    @apply font-heading font-extrabold uppercase leading-[1.1] tracking-tight;
+  }
+  .red-rule {
+    @apply block h-1 w-14 bg-aerored;
+  }
+  .btn {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 whitespace-nowrap px-6 py-3 font-heading text-sm font-bold uppercase tracking-[0.12em] transition-colors duration-200;
+  }
+  .btn-red {
+    @apply btn bg-aerored text-white hover:bg-[#c4141b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-aerored;
+  }
+  .btn-ghost-dark {
+    @apply btn border-2 border-jet text-jet hover:bg-jet hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-jet;
+  }
+  .btn-ghost-light {
+    @apply btn border-2 border-white text-white hover:bg-white hover:text-jet focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white;
+  }
+  .input {
+    @apply w-full border border-silver bg-white px-4 py-3 font-body text-sm text-charcoal placeholder:text-charcoal/50 focus:border-aerored focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-aerored disabled:cursor-not-allowed disabled:bg-silver/20;
+  }
+  .label {
+    @apply mb-1.5 block font-heading text-xs font-bold uppercase tracking-[0.14em] text-jet;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
