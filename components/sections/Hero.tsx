@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, type ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { useIsomorphicLayoutEffect } from "@/lib/useIsomorphicLayoutEffect";
@@ -10,10 +10,13 @@ import Parallax from "@/components/motion/Parallax";
 type HeroProps = {
   image: string;
   imageAlt: string;
+  /** optional looping background B-roll; image remains the poster/fallback */
+  video?: string;
   words: string[];
   tagline?: string;
   sub: string;
   children?: ReactNode; // CTA buttons
+  badge?: ReactNode; // trust mark under the CTAs
   compact?: boolean;
 };
 
@@ -24,13 +27,20 @@ type HeroProps = {
 export default function Hero({
   image,
   imageAlt,
+  video,
   words,
   tagline,
   sub,
   children,
+  badge,
   compact = false,
 }: HeroProps) {
   const rootRef = useRef<HTMLDivElement>(null);
+  const [playVideo, setPlayVideo] = useState(false);
+
+  useIsomorphicLayoutEffect(() => {
+    if (video && !prefersReducedMotion()) setPlayVideo(true);
+  }, [video]);
 
   useIsomorphicLayoutEffect(() => {
     const root = rootRef.current;
@@ -76,6 +86,18 @@ export default function Hero({
           sizes="100vw"
           className="scale-110 object-cover"
         />
+        {playVideo && (
+          <video
+            className="absolute inset-0 h-full w-full scale-110 object-cover"
+            src={video}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            aria-hidden="true"
+          />
+        )}
       </Parallax>
       <div
         aria-hidden="true"
@@ -112,6 +134,11 @@ export default function Hero({
         {children && (
           <div data-hero-rest className="mt-9 flex flex-wrap gap-4">
             {children}
+          </div>
+        )}
+        {badge && (
+          <div data-hero-rest className="mt-10">
+            {badge}
           </div>
         )}
       </div>

@@ -141,34 +141,34 @@ export default function AboutPage() {
               </div>
             ))}
           </Stagger>
-          <Reveal className="mt-10 flex flex-wrap items-center gap-8">
+          <Reveal className="mt-12 flex flex-wrap items-center gap-x-12 gap-y-6">
             <Image
-              src="/brand/transport-canada-badge.png"
+              src="/brand/transport-canada-logo.png"
               alt="Transport Canada Approved Maintenance Organization"
-              width={170}
-              height={85}
-              className="h-14 w-auto"
+              width={1386}
+              height={240}
+              className="h-9 w-auto"
             />
             <Image
-              src="/images/about/EASA-Logo.jpg"
+              src="/brand/easa-logo.png"
               alt="European Union Aviation Safety Agency (EASA) logo"
-              width={170}
-              height={85}
-              className="h-14 w-auto"
+              width={704}
+              height={240}
+              className="h-12 w-auto"
             />
             <Image
-              src="/images/home/GarminAuthorizedDealer_LOGO_1000.jpg"
-              alt="Garmin Authorized Dealer badge"
-              width={170}
-              height={85}
-              className="h-14 w-auto"
+              src="/brand/garmin-logo.png"
+              alt="Garmin logo — IAS is an authorized Garmin Aviation dealer"
+              width={892}
+              height={240}
+              className="h-9 w-auto"
             />
             <Image
-              src="/brand/aea-badge.png"
+              src="/brand/aea-logo.png"
               alt="Aircraft Electronics Association member badge"
-              width={170}
-              height={85}
-              className="h-14 w-auto"
+              width={628}
+              height={240}
+              className="h-11 w-auto"
             />
           </Reveal>
         </div>

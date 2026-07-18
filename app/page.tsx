@@ -103,9 +103,24 @@ export default function HomePage() {
       <Hero
         image="/images/home/heli_overfire-slider.jpg"
         imageAlt="Helicopter flying over a wildfire during aerial firefighting operations"
+        video="/videos/hero-broll.mp4"
         words={["Every", "Wire.", "Every", "Panel.", "Every", "Flight."]}
         tagline="Because it matters."
         sub="Offering the highest standard in custom engineered avionics and electrical installations, repairs, harness building & design. Due to the extreme wildfire season, it's critical to start planning your winter maintenance. Contact our team today."
+        badge={
+          <div className="flex items-center gap-4 border-l-4 border-aerored pl-4">
+            <Image
+              src="/brand/garmin-logo-white.png"
+              alt="Garmin"
+              width={892}
+              height={240}
+              className="h-6 w-auto"
+            />
+            <p className="font-heading text-xs font-bold uppercase tracking-[0.22em] text-white">
+              Authorized Aviation Dealer
+            </p>
+          </div>
+        }
       >
         <Link href="/contact#estimate" className="btn-red">
           Request an Estimate
@@ -143,42 +158,42 @@ export default function HomePage() {
             </p>
           </Reveal>
         </div>
-        <div className="border-t border-white/10">
-          <div className="wrap flex flex-wrap items-center justify-center gap-x-10 gap-y-4 py-6">
+        <div className="bg-white">
+          <div className="wrap flex flex-wrap items-center justify-center gap-x-14 gap-y-6 py-8">
             <Image
-              src="/brand/transport-canada-badge.png"
+              src="/brand/transport-canada-logo.png"
               alt="Transport Canada Approved Maintenance Organization"
-              width={150}
-              height={75}
-              className="h-12 w-auto bg-white/95 p-1.5"
+              width={1386}
+              height={240}
+              className="h-9 w-auto"
             />
             <Image
-              src="/brand/easa-badge.png"
+              src="/brand/easa-logo.png"
               alt="EASA certified"
-              width={150}
-              height={75}
-              className="h-12 w-auto bg-white/95 p-1.5"
+              width={704}
+              height={240}
+              className="h-11 w-auto"
             />
             <Image
-              src="/images/home/GarminAuthorizedDealer_LOGO_1000.jpg"
+              src="/brand/garmin-logo.png"
               alt="Authorized Garmin Aviation dealer"
-              width={150}
-              height={75}
-              className="h-12 w-auto"
+              width={892}
+              height={240}
+              className="h-8 w-auto"
             />
             <Image
-              src="/brand/aea-badge.png"
+              src="/brand/aea-logo.png"
               alt="Aircraft Electronics Association member since 2017"
-              width={150}
-              height={75}
-              className="h-12 w-auto bg-white/95 p-1.5"
+              width={628}
+              height={240}
+              className="h-10 w-auto"
             />
             <Image
               src="/images/home/Chamber_2022Award-Techn-Innovator-Logo.png"
-              alt="Kelowna Chamber of Commerce 2022 Technology Innovator award"
-              width={150}
-              height={75}
-              className="h-14 w-auto bg-white/95 p-1.5"
+              alt="Kelowna Chamber Business Excellence Awards 2022 Winner — Technology Innovator of the Year"
+              width={724}
+              height={362}
+              className="h-16 w-auto"
             />
           </div>
         </div>
@@ -276,11 +291,11 @@ export default function HomePage() {
             <Reveal delay={0.15}>
               <div className="mt-8 flex flex-wrap items-center gap-6">
                 <Image
-                  src="/images/home/GarminAuthorizedDealer_LOGO_1000.jpg"
-                  alt="Garmin Authorized Dealer badge"
-                  width={220}
-                  height={110}
-                  className="h-16 w-auto"
+                  src="/brand/garmin-logo.png"
+                  alt="Garmin logo — IAS is an authorized Garmin Aviation dealer"
+                  width={892}
+                  height={240}
+                  className="h-12 w-auto"
                 />
                 <Link href="/contact#estimate" className="btn-red">
                   Discuss an Avionics Project

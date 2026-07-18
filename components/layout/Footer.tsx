@@ -52,29 +52,10 @@ export default function Footer() {
               Specialized avionics and electrical services for rotary-wing and
               fixed-wing aircraft. Established {site.established}.
             </p>
-            <div className="mt-5 flex items-center gap-4">
-              <Image
-                src="/brand/transport-canada-badge.png"
-                alt="Transport Canada Approved Maintenance Organization"
-                width={120}
-                height={60}
-                className="h-10 w-auto bg-white/90 p-1"
-              />
-              <Image
-                src="/brand/easa-badge.png"
-                alt="EASA certified"
-                width={120}
-                height={60}
-                className="h-10 w-auto bg-white/90 p-1"
-              />
-              <Image
-                src="/brand/aea-badge.png"
-                alt="Aircraft Electronics Association member since 2017"
-                width={120}
-                height={60}
-                className="h-10 w-auto bg-white/90 p-1"
-              />
-            </div>
+            <p className="mt-6 text-xs leading-relaxed text-silver/90">
+              Transport Canada AMO 85-17 · EASA certified · Authorized Garmin
+              Aviation dealer · AEA member since 2017
+            </p>
           </div>
 
           <div>
