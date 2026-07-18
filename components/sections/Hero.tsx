@@ -12,6 +12,8 @@ type HeroProps = {
   imageAlt: string;
   /** optional looping background B-roll; image remains the poster/fallback */
   video?: string;
+  /** portrait rendition served on small screens */
+  videoMobile?: string;
   words: string[];
   tagline?: string;
   sub: string;
@@ -28,6 +30,7 @@ export default function Hero({
   image,
   imageAlt,
   video,
+  videoMobile,
   words,
   tagline,
   sub,
@@ -36,11 +39,13 @@ export default function Hero({
   compact = false,
 }: HeroProps) {
   const rootRef = useRef<HTMLDivElement>(null);
-  const [playVideo, setPlayVideo] = useState(false);
+  const [videoSrc, setVideoSrc] = useState<string | null>(null);
 
   useIsomorphicLayoutEffect(() => {
-    if (video && !prefersReducedMotion()) setPlayVideo(true);
-  }, [video]);
+    if (!video || prefersReducedMotion()) return;
+    const small = window.matchMedia("(max-width: 768px)").matches;
+    setVideoSrc(small && videoMobile ? videoMobile : video);
+  }, [video, videoMobile]);
 
   useIsomorphicLayoutEffect(() => {
     const root = rootRef.current;
@@ -86,10 +91,11 @@ export default function Hero({
           sizes="100vw"
           className="scale-110 object-cover"
         />
-        {playVideo && (
+        {videoSrc && (
           <video
+            key={videoSrc}
             className="absolute inset-0 h-full w-full scale-110 object-cover"
-            src={video}
+            src={videoSrc}
             autoPlay
             muted
             loop

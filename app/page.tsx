@@ -104,6 +104,7 @@ export default function HomePage() {
         image="/images/home/heli_overfire-slider.jpg"
         imageAlt="Helicopter flying over a wildfire during aerial firefighting operations"
         video="/videos/hero-broll.mp4"
+        videoMobile="/videos/hero-broll-mobile.mp4"
         words={["Every", "Wire.", "Every", "Panel.", "Every", "Flight."]}
         tagline="Because it matters."
         sub="Offering the highest standard in custom engineered avionics and electrical installations, repairs, harness building & design. Due to the extreme wildfire season, it's critical to start planning your winter maintenance. Contact our team today."
