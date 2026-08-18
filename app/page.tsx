@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/meta";
 import Link from "next/link";
 import Image from "next/image";
 import Hero from "@/components/sections/Hero";
@@ -10,10 +11,14 @@ import Counter from "@/components/motion/Counter";
 import HoverLift from "@/components/motion/HoverLift";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title:
+export const metadata: Metadata = pageMeta({
+  title: "Home",
+  fullTitle:
     "IAS Avionics | Avionics, Aircraft Rewiring & Wiring Harnesses — Kelowna, BC",
-};
+  description:
+    "Avionics installations, aircraft rewiring, wiring harnesses and laser wire marking for helicopters and fixed-wing aircraft. Transport Canada AMO 85-17, authorized Garmin dealer — Kelowna International Airport (CYLW), BC.",
+  path: "/",
+});
 
 const services = [
   {
@@ -21,21 +26,21 @@ const services = [
     text: "Installations, integration with existing systems, equipment sales, troubleshooting, repairs and scheduled recertifications — including RVSM-capable aircraft.",
     image: "/images/services/avionics-service.jpg",
     alt: "Avionics technician working on an aircraft instrument panel",
-    href: "/services#avionics",
+    href: "/services/avionics",
   },
   {
     title: "Aircraft Rewiring",
     text: "Complete and partial rewires that replace aging or unreliable wiring and track down intermittent electrical problems at the source.",
     image: "/images/home/Innovative-Aerospace-rewire-services.jpg",
     alt: "Aircraft wiring bundles during a rewiring project",
-    href: "/services#rewiring",
+    href: "/services/aircraft-rewiring",
   },
   {
     title: "Wiring Harnesses",
     text: "Custom, replacement, standard and accessory harnesses — built, installed and documented with laser-marked aircraft wire.",
     image: "/images/home/Innovative-Aerospace-Services-helicopter-wiring.jpg",
     alt: "Helicopter wiring harness work in progress",
-    href: "/services#harnesses",
+    href: "/services/wiring-harnesses",
   },
   {
     title: "Laser Wire Marking",
@@ -287,7 +292,7 @@ export default function HomePage() {
             <SectionHeading
               eyebrow="Equipment & Installations"
               title="Authorized Garmin Aviation Dealer"
-              intro="IAS is an authorized Garmin Aviation dealer and installs systems from leading avionics manufacturers — properly integrating new equipment with your aircraft's existing systems to improve reliability, functionality, compliance and operational capability."
+              intro="IAS is an authorized Garmin Aviation dealer — the only Garmin dealer in Kelowna — and installs systems from leading avionics manufacturers, properly integrating new equipment with your aircraft's existing systems to improve reliability, functionality, compliance and operational capability."
             />
             <Reveal delay={0.15}>
               <div className="mt-8 flex flex-wrap items-center gap-6">
@@ -298,7 +303,10 @@ export default function HomePage() {
                   height={240}
                   className="h-12 w-auto"
                 />
-                <Link href="/contact#estimate" className="btn-red">
+                <Link href="/garmin-dealer" className="btn-red">
+                  Explore Garmin Solutions
+                </Link>
+                <Link href="/contact#estimate" className="btn-ghost-dark">
                   Discuss an Avionics Project
                 </Link>
               </div>
@@ -382,9 +390,14 @@ export default function HomePage() {
               We can also help you plan around recertification deadlines,
               scheduled maintenance and seasonal operating requirements.
             </p>
-            <Link href="/contact" className="btn-red mt-6">
-              Plan Your Maintenance Window
-            </Link>
+            <div className="mt-6 flex flex-wrap gap-4">
+              <Link href="/contact" className="btn-red">
+                Plan Your Maintenance Window
+              </Link>
+              <Link href="/helicopter-avionics-electrical" className="btn-ghost-light">
+                Helicopter Services
+              </Link>
+            </div>
           </Reveal>
         </div>
       </section>

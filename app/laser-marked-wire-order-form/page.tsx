@@ -1,5 +1,7 @@
 import { Fragment } from "react";
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/meta";
+import Link from "next/link";
 import Image from "next/image";
 import Hero from "@/components/sections/Hero";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -8,11 +10,12 @@ import LaserWireOrderForm from "@/components/forms/LaserWireOrderForm";
 import { wireCatalog, HEAVY_GAUGE_NOTE } from "@/lib/wireCatalog";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Laser Marked Wire Order Form",
   description:
     "Order laser-marked aircraft wire from IAS Avionics. Fill out each field per marked wire requested and receive a quotation for your order.",
-};
+  path: "/laser-marked-wire-order-form",
+});
 
 export default function LaserWirePage() {
   return (
@@ -22,7 +25,7 @@ export default function LaserWirePage() {
         image="/images/laser-wire/laser-marked-wire.jpg"
         imageAlt="Laser-marked aircraft wire with printed wire identification"
         words={["Laser", "Marked", "Wire", "Order", "Form"]}
-        sub="In-house laser wire marking for aircraft wiring projects and customer orders — clear identification, installation consistency and professional aircraft wiring practices."
+        sub="Request a quotation for laser-marked aircraft wire. Fill out one row per marked wire you need, submit, and we'll come back to you with pricing."
       />
 
       {/* Instructions */}
@@ -53,6 +56,16 @@ export default function LaserWirePage() {
                 Submitting an order form is a <strong>request for a
                 quotation</strong> — it is not an immediate purchase or a
                 confirmed order.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed">
+                New to laser wire marking?{" "}
+                <Link
+                  href="/services/laser-wire-marking"
+                  className="font-semibold text-aerored underline underline-offset-2"
+                >
+                  Read about the service
+                </Link>{" "}
+                before you order.
               </p>
               <div className="mt-8 flex flex-col items-start gap-3">
                 <a

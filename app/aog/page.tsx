@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/meta";
 import Link from "next/link";
 import Image from "next/image";
 import Hero from "@/components/sections/Hero";
@@ -7,11 +8,12 @@ import Reveal from "@/components/motion/Reveal";
 import Stagger from "@/components/motion/Stagger";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "AOG — Aircraft on Ground Support",
   description:
     "Aircraft on Ground support from IAS Avionics in Kelowna, BC. Email aog@iasavionics.ca or call 778-753-0250. Commercial-aircraft AOG requests are treated as a priority.",
-};
+  path: "/aog",
+});
 
 export default function AogPage() {
   return (

@@ -1,3 +1,5 @@
+import { servicePages } from "@/lib/services";
+
 export const site = {
   legalName: "Innovative Aerospace Services Ltd.",
   shortName: "IAS Avionics",
@@ -11,7 +13,7 @@ export const site = {
   laserWireEmail: "nancy@iasavionics.ca",
   address: {
     facility: "CYLW Kelowna International Airport",
-    street: "1-6280 Lapointe Drive",
+    street: "1-6280 Airport Way",
     city: "Kelowna",
     region: "BC",
     postal: "V1V 1S1",
@@ -24,12 +26,49 @@ export const site = {
   ],
 } as const;
 
-export const nav = [
+export type NavItem = {
+  href: string;
+  label: string;
+  /** When present, the item opens a dropdown instead of being a plain link. */
+  children?: readonly { href: string; label: string }[];
+};
+
+/**
+ * Header navigation. Items with `children` render as dropdowns; the parent
+ * `href` stays a real destination so the group is still reachable directly
+ * (and remains usable if JavaScript fails).
+ *
+ * Service children are generated from lib/services.ts so the menu can never
+ * drift from the services that actually exist.
+ */
+export const nav: readonly NavItem[] = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
-  { href: "/projects", label: "Projects" },
+  {
+    href: "/about",
+    label: "About",
+    children: [
+      { href: "/about", label: "About Us" },
+      { href: "/projects", label: "Our Projects" },
+      { href: "/careers", label: "Careers" },
+      { href: "/faq", label: "FAQ" },
+    ],
+  },
+  {
+    href: "/services",
+    label: "Services",
+    children: [
+      { href: "/services", label: "All Services" },
+      ...servicePages.map((s) => ({
+        href: `/services/${s.slug}`,
+        label: s.navLabel ?? s.title,
+      })),
+      {
+        href: "/helicopter-avionics-electrical",
+        label: "Helicopter Avionics & Electrical",
+      },
+      { href: "/garmin-dealer", label: "Authorized Garmin Dealer" },
+    ],
+  },
   { href: "/aog", label: "AOG" },
-  { href: "/careers", label: "Careers" },
   { href: "/contact", label: "Contact" },
 ] as const;

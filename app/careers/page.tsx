@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/meta";
 import Link from "next/link";
 import Image from "next/image";
 import Hero from "@/components/sections/Hero";
@@ -7,11 +8,12 @@ import Reveal from "@/components/motion/Reveal";
 import Stagger from "@/components/motion/Stagger";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Careers",
   description:
     "Join a growing avionics team in Kelowna, BC. IAS Avionics welcomes applications from Avionics Aircraft Maintenance Engineers and experienced avionics apprentices.",
-};
+  path: "/careers",
+});
 
 const qualities = [
   "Versatile",

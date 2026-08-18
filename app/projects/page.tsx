@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/meta";
 import Link from "next/link";
 import Image from "next/image";
 import Hero from "@/components/sections/Hero";
@@ -7,11 +8,12 @@ import AogBand from "@/components/ui/AogBand";
 import Reveal from "@/components/motion/Reveal";
 import Stagger from "@/components/motion/Stagger";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Projects",
   description:
     "IAS Avionics project work, including a Bell 212 complete rewire. Projects are continually in progress at our Kelowna facility.",
-};
+  path: "/projects",
+});
 
 const gallery = [
   {

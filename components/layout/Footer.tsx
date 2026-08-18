@@ -3,6 +3,27 @@ import Image from "next/image";
 import { site, nav } from "@/lib/site";
 import Reveal from "@/components/motion/Reveal";
 
+/**
+ * Flat inventory of every page, for the footer link grid — the footer is where
+ * the whole site should be reachable in one place, so nested nav groups are
+ * expanded and de-duplicated here.
+ */
+const footerLinks: { href: string; label: string }[] = (() => {
+  const out: { href: string; label: string }[] = [];
+  const seen = new Set<string>();
+  const push = (href: string, label: string) => {
+    if (seen.has(href)) return;
+    seen.add(href);
+    out.push({ href, label });
+  };
+  for (const item of nav) {
+    if (item.children) item.children.forEach((c) => push(c.href, c.label));
+    else push(item.href, item.label);
+  }
+  push("/laser-marked-wire-order-form", "Laser Marked Wire Order Form");
+  return out;
+})();
+
 export default function Footer() {
   return (
     <footer className="relative bg-jet text-silver">
@@ -53,8 +74,8 @@ export default function Footer() {
               fixed-wing aircraft. Established {site.established}.
             </p>
             <p className="mt-6 text-xs leading-relaxed text-silver/90">
-              Transport Canada AMO 85-17 · EASA certified · Authorized Garmin
-              Aviation dealer · AEA member since 2017
+              Transport Canada AMO 85-17 · EASA certified · FAA certified ·
+              Authorized Garmin Aviation dealer · AEA member since 2017
             </p>
           </div>
 
@@ -116,7 +137,7 @@ export default function Footer() {
               </li>
             </ul>
             <nav aria-label="Footer" className="mt-6 grid grid-cols-2 gap-x-4 gap-y-2">
-              {nav.map((item) => (
+              {footerLinks.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -125,12 +146,6 @@ export default function Footer() {
                   {item.label}
                 </Link>
               ))}
-              <Link
-                href="/laser-marked-wire-order-form"
-                className="col-span-2 text-sm hover:text-white"
-              >
-                Laser Marked Wire Order Form
-              </Link>
             </nav>
           </div>
         </div>

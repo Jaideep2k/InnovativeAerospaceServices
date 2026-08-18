@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/meta";
 import Link from "next/link";
 import Image from "next/image";
 import Hero from "@/components/sections/Hero";
@@ -8,11 +9,12 @@ import Reveal from "@/components/motion/Reveal";
 import Stagger from "@/components/motion/Stagger";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "About Us",
   description:
     "Innovative Aerospace Services was incorporated in 2010 to bring specialized avionics and electrical services to the Okanagan and Southern British Columbia, based at Kelowna International Airport.",
-};
+  path: "/about",
+});
 
 const credentials = [
   "Transport Canada Approved Maintenance Organization — AMO 85-17",
@@ -21,7 +23,8 @@ const credentials = [
   "AMO rating — Instruments",
   "AMO rating — Structures",
   "EASA certified",
-  "Authorized Garmin Aviation dealer",
+  "FAA certified",
+  "Authorized Garmin Aviation dealer — the only Garmin dealer in Kelowna",
   "Aircraft Electronics Association member since 2017",
 ];
 

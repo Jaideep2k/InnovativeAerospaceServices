@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/meta";
+import Link from "next/link";
 import Image from "next/image";
 import Hero from "@/components/sections/Hero";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -6,11 +8,12 @@ import Reveal from "@/components/motion/Reveal";
 import ContactForm from "@/components/forms/ContactForm";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Contact",
   description:
-    "Contact IAS Avionics at Kelowna International Airport — 1-6280 Lapointe Drive, Kelowna, BC. Call 778-753-0250 or send a general inquiry.",
-};
+    "Contact IAS Avionics at Kelowna International Airport (CYLW) — 1-6280 Airport Way, Kelowna, BC. Call 778-753-0250 or send a general inquiry.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (
@@ -105,7 +108,15 @@ export default function ContactPage() {
             <span className="red-rule mt-4" />
             <p className="mt-4 text-sm leading-relaxed">
               For estimates, appointments, recertifications, project questions
-              or résumés. We&rsquo;ll follow up with you directly.
+              or résumés. We&rsquo;ll follow up with you directly. Quick
+              question first?{" "}
+              <Link
+                href="/faq"
+                className="font-semibold text-aerored underline underline-offset-2"
+              >
+                Check the FAQ
+              </Link>
+              .
             </p>
             <div className="mt-7">
               <ContactForm />
