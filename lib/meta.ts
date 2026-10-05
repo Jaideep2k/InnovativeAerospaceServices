@@ -4,7 +4,7 @@ import type { Metadata } from "next";
  * Builds a page's metadata from a single source so the <title>, the canonical
  * URL and the OpenGraph/Twitter share card can never drift apart.
  *
- * `title` is the short page name — the root layout's template appends
+ * `title` is the short page name. The root layout's template appends
  * "| IAS Avionics" to the document title, and we mirror that suffix onto the
  * share card, which Next does not derive automatically.
  */

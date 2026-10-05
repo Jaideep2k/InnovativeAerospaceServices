@@ -18,15 +18,15 @@ export const metadata: Metadata = pageMeta({
 const gallery = [
   {
     src: "/images/projects/212-DEC-A2.jpg",
-    alt: "Bell 212 rewire project — wiring work in progress at IAS Avionics",
+    alt: "Bell 212 rewire project: wiring work in progress at IAS Avionics",
   },
   {
     src: "/images/projects/212-MAR-B2-1.jpg",
-    alt: "Bell 212 rewire project — harness routing and panel work",
+    alt: "Bell 212 rewire project: harness routing and panel work",
   },
   {
     src: "/images/projects/ias-avionics-212-MAY-A1-1.jpg",
-    alt: "Bell 212 rewire project — avionics installation progress",
+    alt: "Bell 212 rewire project: avionics installation progress",
   },
   {
     src: "/images/projects/laser-marked-wire.jpg",
@@ -50,7 +50,7 @@ export default function ProjectsPage() {
         image="/images/home/Innovative-Aerospace-rewire-projects.jpg"
         imageAlt="Aircraft rewiring project underway at IAS Avionics"
         words={["Projects", "in", "Progress"]}
-        sub="From light general-aviation aircraft to complete medium- and heavy-helicopter rewires — projects are continually in progress at our Kelowna facility."
+        sub="From light general-aviation aircraft to complete medium- and heavy-helicopter rewires, projects are continually in progress at our Kelowna facility."
       >
         <Link href="/contact#estimate" className="btn-red">
           Discuss Your Project
@@ -63,7 +63,7 @@ export default function ProjectsPage() {
           <SectionHeading
             eyebrow="Featured project"
             title="Bell 212 Complete Rewire"
-            intro="A complete rewire of a Bell 212 — replacing aircraft wiring end to end, with laser-marked wire, new harness construction and supporting documentation. The photographs below are from this project."
+            intro="A complete rewire of a Bell 212, replacing aircraft wiring end to end, with laser-marked wire, new harness construction and supporting documentation. The photographs below are from this project."
           />
           <Stagger className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {gallery.map((img) => (
@@ -107,7 +107,7 @@ export default function ProjectsPage() {
           <Reveal className="mt-10">
             <p className="max-w-2xl text-sm leading-relaxed text-silver">
               Aircraft our team has experience with also include the Pilatus
-              PC-12 and de Havilland Beaver. This is not a complete list — if
+              PC-12 and de Havilland Beaver. This is not a complete list. If
               you don&rsquo;t see your aircraft here, ask us.
             </p>
             <Link href="/contact" className="btn-red mt-6">

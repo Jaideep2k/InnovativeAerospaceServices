@@ -12,7 +12,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = pageMeta({
   title: "Helicopter Avionics & Electrical Services",
   description:
-    "Helicopter electrical maintenance, wiring repairs, complete rotary-wing rewires, avionics installation and lighting system repairs for commercial helicopter operators — based at Kelowna International Airport, BC.",
+    "Helicopter electrical maintenance, wiring repairs, complete rotary-wing rewires, avionics installation and lighting system repairs for commercial helicopter operators, based at Kelowna International Airport, BC.",
   path: "/helicopter-avionics-electrical",
 });
 
@@ -43,7 +43,7 @@ export default function HelicopterPage() {
         image="/images/home/heli_overfire-slider.jpg"
         imageAlt="Helicopter operating over a wildfire during aerial firefighting"
         words={["Helicopter", "Avionics", "&", "Electrical"]}
-        sub="Specialized maintenance and repair support for helicopter operators — focused on safety, reliability and operational readiness for rotary-wing aircraft."
+        sub="Specialized maintenance and repair support for helicopter operators, focused on safety, reliability and operational readiness for rotary-wing aircraft."
       >
         <Link href="/contact#estimate" className="btn-red">
           Request an Estimate
@@ -56,7 +56,7 @@ export default function HelicopterPage() {
           <SectionHeading
             eyebrow="Rotary-wing support"
             title="We Understand What Rotary-Wing Demands"
-            intro="Innovative Aerospace Services provides specialized avionics and electrical maintenance and repair support for helicopter operators. We understand the unique demands placed on rotary-wing aircraft — vibration, duty cycle and unforgiving operating environments — and deliver solutions focused on safety, reliability and operational readiness. We work closely with private owners, commercial operators and aviation organizations to minimize downtime and keep aircraft mission-ready."
+            intro="Innovative Aerospace Services provides specialized avionics and electrical maintenance and repair support for helicopter operators. We understand the unique demands placed on rotary-wing aircraft (vibration, duty cycle and unforgiving operating environments) and deliver solutions focused on safety, reliability and operational readiness. We work closely with private owners, commercial operators and aviation organizations to minimize downtime and keep aircraft mission-ready."
           />
         </div>
       </section>
@@ -65,7 +65,7 @@ export default function HelicopterPage() {
         id="services"
         eyebrow="What we do"
         title="Helicopter Services"
-        intro="Electrical and avionics work on light, medium and heavy helicopters — at our Kelowna facility, at your hangar, or in the field where arrangements can be made."
+        intro="Electrical and avionics work on light, medium and heavy helicopters, at our Kelowna facility, at your hangar, or in the field where arrangements can be made."
         items={[
           "Electrical troubleshooting",
           "Wiring repairs and replacement",
@@ -77,7 +77,7 @@ export default function HelicopterPage() {
           "Inspection support",
           "Modification support",
         ]}
-        note="We offer the fastest rewire in the industry, so aircraft downtime is reduced. Note that IAS does not perform regulated engineering work directly — where engineering is required, it is supplied by registered third-party engineering firms."
+        note="We offer the fastest rewire in the industry, so aircraft downtime is reduced. Note that IAS does not perform regulated engineering work directly. Where engineering is required, it is supplied by registered third-party engineering firms."
         image="/images/home/Innovative-Aerospace-rewire-services.jpg"
         imageAlt="Helicopter cockpit instrument panel serviced by IAS"
         cta="Discuss a Helicopter Project"
@@ -90,7 +90,7 @@ export default function HelicopterPage() {
         id="rewires"
         eyebrow="Rotary-wing rewires"
         title="Complete Helicopter Rewiring"
-        intro="Aging wiring on a working helicopter shows up as intermittent faults, unreliable avionics and repeat squawks. We perform complete and partial rewires — replacing aging wiring, connectors and circuit protection, remediating corrosion and damage, and marking every wire in-house for the maintenance life that follows."
+        intro="Aging wiring on a working helicopter shows up as intermittent faults, unreliable avionics and repeat squawks. We perform complete and partial rewires, replacing aging wiring, connectors and circuit protection, remediating corrosion and damage, and marking every wire in-house for the maintenance life that follows."
         benefits={[
           "Improved system reliability",
           "Enhanced safety",
@@ -112,7 +112,7 @@ export default function HelicopterPage() {
           <SectionHeading
             eyebrow="Who we support"
             title="Working Helicopters, Working Operators"
-            intro="We support commercial helicopter fleets across the Okanagan and Southern British Columbia — and beyond, where arrangements can be made."
+            intro="We support commercial helicopter fleets across the Okanagan and Southern British Columbia, and beyond, where arrangements can be made."
             dark
           />
           <Stagger className="mt-10 flex flex-wrap gap-3">

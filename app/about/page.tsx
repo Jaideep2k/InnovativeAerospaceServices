@@ -16,16 +16,20 @@ export const metadata: Metadata = pageMeta({
   path: "/about",
 });
 
-const credentials = [
-  "Transport Canada Approved Maintenance Organization — AMO 85-17",
-  "AMO rating — Avionics",
-  "AMO rating — Components",
-  "AMO rating — Instruments",
-  "AMO rating — Structures",
-  "EASA certified",
-  "FAA certified",
-  "Authorized Garmin Aviation dealer — the only Garmin dealer in Kelowna",
-  "Aircraft Electronics Association member since 2017",
+/** `pdf` links the certificate document, as the previous site did. */
+const credentials: { label: string; pdf?: string }[] = [
+  {
+    label: "Transport Canada Approved Maintenance Organization, AMO 85-17",
+    pdf: "/files/IAS-AMO-CERTIFICATE.pdf",
+  },
+  { label: "AMO rating: Avionics", pdf: "/files/IAS-AMO-AVIONICS-RATING.pdf" },
+  { label: "AMO rating: Components", pdf: "/files/IAS-AMO-COMPONENT-RATING.pdf" },
+  { label: "AMO rating: Instruments", pdf: "/files/IAS-AMO-INSTRUMENT-RATING.pdf" },
+  { label: "AMO rating: Structures", pdf: "/files/IAS-AMO-STRUCTURES-RATING.pdf" },
+  { label: "EASA certified" },
+  { label: "FAA certified" },
+  { label: "Authorized Garmin Aviation dealer, the only Garmin dealer in Kelowna" },
+  { label: "Aircraft Electronics Association member since 2017" },
 ];
 
 export default function AboutPage() {
@@ -36,7 +40,7 @@ export default function AboutPage() {
         image="/images/about/specialized-avionics-kelowna-airport.jpg"
         imageAlt="Aircraft at Kelowna International Airport where IAS Avionics is based"
         words={["Built", "in", "the", "Okanagan.", "Since", "2010."]}
-        sub="Innovative Aerospace Services Ltd. — specialized avionics and electrical services at Kelowna International Airport."
+        sub="Innovative Aerospace Services Ltd.: specialized avionics and electrical services at Kelowna International Airport."
       >
         <Link href="/contact" className="btn-red">
           Contact IAS
@@ -45,7 +49,7 @@ export default function AboutPage() {
 
       {/* Story */}
       <section className="py-20">
-        <div className="wrap grid items-start gap-12 lg:grid-cols-2">
+        <div className="wrap grid grid-cols-1 items-start gap-12 lg:grid-cols-2">
           <div>
             <SectionHeading
               eyebrow="Our story"
@@ -63,7 +67,7 @@ export default function AboutPage() {
                 </p>
                 <p>
                   Our team has decades of combined experience with general
-                  aviation and commercial aircraft — fixed-wing and
+                  aviation and commercial aircraft, fixed-wing and
                   rotary-wing alike. We provide avionics and electrical
                   troubleshooting, installations, repairs, aircraft rewiring,
                   wiring-harness services, certifications, equipment sales and
@@ -98,7 +102,7 @@ export default function AboutPage() {
             <SectionHeading
               eyebrow="Our mission"
               title="Excellence in Quality and Service, Every Day"
-              intro="We support commercial helicopters, corporate jets and general aviation aircraft — rotary-wing and fixed-wing. Our mission is to take care of each customer's aircraft while maintaining the quality, reliability and performance its intended operation requires."
+              intro="We support commercial helicopters, corporate jets and general aviation aircraft, rotary-wing and fixed-wing. Our mission is to take care of each customer's aircraft while maintaining the quality, reliability and performance its intended operation requires."
               dark
             />
             <Reveal delay={0.15}>
@@ -106,7 +110,7 @@ export default function AboutPage() {
                 A note on engineering: IAS does not perform regulated
                 engineering work directly. Where a project requires it,
                 engineering is supplied by registered third-party engineering
-                firms — we help you plan, coordinate, document, install and
+                firms. We help you plan, coordinate, document, install and
                 complete the project.
               </p>
             </Reveal>
@@ -136,11 +140,23 @@ export default function AboutPage() {
           <Stagger className="mt-10 grid gap-4 sm:grid-cols-2">
             {credentials.map((c) => (
               <div
-                key={c}
+                key={c.label}
                 className="flex items-start gap-3 border border-silver/50 bg-white p-5"
               >
                 <span aria-hidden="true" className="mt-1 h-2.5 w-2.5 shrink-0 bg-aerored" />
-                <p className="text-sm font-semibold text-jet">{c}</p>
+                <div>
+                  <p className="text-sm font-semibold text-jet">{c.label}</p>
+                  {c.pdf && (
+                    <a
+                      href={c.pdf}
+                      target="_blank"
+                      rel="noopener"
+                      className="mt-1 inline-block text-xs font-semibold text-aerored underline underline-offset-2"
+                    >
+                      View certificate (PDF)
+                    </a>
+                  )}
+                </div>
               </div>
             ))}
           </Stagger>
@@ -161,7 +177,7 @@ export default function AboutPage() {
             />
             <Image
               src="/brand/garmin-logo.png"
-              alt="Garmin logo — IAS is an authorized Garmin Aviation dealer"
+              alt="Garmin logo: IAS is an authorized Garmin Aviation dealer"
               width={892}
               height={240}
               className="h-9 w-auto"

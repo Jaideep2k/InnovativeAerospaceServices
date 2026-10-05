@@ -217,22 +217,35 @@ export default function Header() {
 
       {/* Main nav */}
       <div className="wrap flex items-center justify-between gap-4 py-3">
-        <Link href="/" aria-label="IAS Avionics — home" onClick={() => setOpen(false)}>
+        <Link
+          href="/"
+          aria-label="IAS Avionics home"
+          onClick={() => setOpen(false)}
+          className="shrink-0"
+        >
           <Image
             src="/brand/ias-logo.png"
-            alt="Innovative Aerospace Services — Avionics, Rewire, Solutions. Since 2010."
+            alt="Innovative Aerospace Services: Avionics, Rewire, Solutions. Since 2010."
             width={440}
             height={90}
             priority
-            className="h-auto w-52 sm:w-64"
+            className="h-auto w-52 sm:w-64 lg:w-52 xl:w-64"
           />
         </Link>
 
-        <nav aria-label="Main" className="hidden items-center gap-6 lg:flex">
-          {nav.map((item) => (
-            <DesktopItem key={item.label} item={item} pathname={pathname} />
-          ))}
-          <Link href="/contact#estimate" className="btn-red">
+        <nav aria-label="Main" className="hidden items-center gap-5 lg:flex xl:gap-6">
+          {nav.map((item) =>
+            // Between 1024 and 1279px the full menu doesn't fit beside the
+            // logo; the logo already links home, so "Home" steps aside there.
+            item.href === "/" ? (
+              <div key={item.label} className="hidden xl:block">
+                <DesktopItem item={item} pathname={pathname} />
+              </div>
+            ) : (
+              <DesktopItem key={item.label} item={item} pathname={pathname} />
+            )
+          )}
+          <Link href="/contact#estimate" className="btn-red lg:px-4 xl:px-6">
             Request an Estimate
           </Link>
         </nav>

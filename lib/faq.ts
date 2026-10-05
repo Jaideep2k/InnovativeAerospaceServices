@@ -4,7 +4,7 @@ export type FaqEntry = { q: string; a: string };
 
 /**
  * Single source of truth for the FAQ page and its FAQPage structured data.
- * Answers are plain text — they are rendered as-is and also serialised into
+ * Answers are plain text: they are rendered as-is and also serialised into
  * JSON-LD, so keep them free of markup.
  */
 export const faq: FaqEntry[] = [
@@ -18,11 +18,11 @@ export const faq: FaqEntry[] = [
   },
   {
     q: "Do you work on helicopters and fixed wing?",
-    a: "Yes. We provide electrical, avionics, wiring and repair support for a variety of operators and aircraft types — from light aircraft through medium and heavy helicopters, and from general aviation to corporate jets.",
+    a: "Yes. We provide electrical, avionics, wiring and repair support for a variety of operators and aircraft types, from light aircraft through medium and heavy helicopters, and from general aviation to corporate jets.",
   },
   {
     q: "Can you supply avionics equipment?",
-    a: "Yes. We offer avionics equipment sales, installation, upgrades and integration services, and we are an authorized Garmin Aviation dealer — the only Garmin dealer in Kelowna.",
+    a: "Yes. We offer avionics equipment sales, installation, upgrades and integration services, and we are an authorized Garmin Aviation dealer, the only Garmin dealer in Kelowna.",
   },
   {
     q: "How long does an avionics installation take?",
@@ -46,6 +46,6 @@ export const faq: FaqEntry[] = [
   },
   {
     q: "Do you perform the engineering for a modification?",
-    a: "IAS does not perform regulated engineering work directly. Where a project requires it, engineering is supplied by registered third-party engineering firms — we help you plan, coordinate, document, install and complete the project.",
+    a: "IAS does not perform regulated engineering work directly. Where a project requires it, engineering is supplied by registered third-party engineering firms. We help you plan, coordinate, document, install and complete the project.",
   },
 ];

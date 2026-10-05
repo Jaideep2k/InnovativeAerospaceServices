@@ -1,15 +1,9 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
-
-const esc = (s: string) =>
-  s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+import { esc, inbox, isEmail, mailConfigured, sendMail } from "@/lib/mail";
+import { looksAutomated } from "@/lib/spam";
 
 export async function POST(req: Request) {
-  const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.RESEND_FROM_EMAIL;
-  const to = process.env.CONTACT_TO_EMAIL;
-
-  if (!apiKey || !from || !to) {
+  if (!mailConfigured()) {
     return NextResponse.json(
       {
         error:
@@ -19,47 +13,57 @@ export async function POST(req: Request) {
     );
   }
 
-  let body: { name?: string; email?: string; phone?: string; message?: string };
+  let body: {
+    name?: string;
+    email?: string;
+    phone?: string;
+    message?: string;
+    website?: string;
+    startedAt?: number;
+  };
   try {
     body = await req.json();
   } catch {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
   }
 
+  if (looksAutomated(body)) return NextResponse.json({ ok: true });
+
   const name = body.name?.trim() ?? "";
   const email = body.email?.trim() ?? "";
   const phone = body.phone?.trim() ?? "";
   const message = body.message?.trim() ?? "";
 
-  if (!name || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !message) {
+  if (!name || !isEmail(email) || !message) {
     return NextResponse.json(
       { error: "Please provide your name, a valid email address and a message." },
       { status: 400 }
     );
   }
-  if (message.length > 5000) {
+  if (name.length > 200 || phone.length > 50 || message.length > 5000) {
     return NextResponse.json({ error: "Message is too long." }, { status: 400 });
   }
 
   try {
-    const resend = new Resend(apiKey);
-    const { error } = await resend.emails.send({
-      from,
-      to,
+    await sendMail({
+      to: inbox(),
       replyTo: email,
-      subject: `Website inquiry — ${name}`,
+      subject: `Website inquiry from ${name}`,
       html: `
         <h2 style="font-family:Arial,sans-serif;">Website inquiry</h2>
         <p style="font-family:Arial,sans-serif;">
           <strong>Name:</strong> ${esc(name)}<br/>
           <strong>Email:</strong> ${esc(email)}<br/>
-          <strong>Phone:</strong> ${esc(phone) || "—"}
+          <strong>Phone:</strong> ${esc(phone) || "Not provided"}
         </p>
-        <p style="font-family:Arial,sans-serif;white-space:pre-wrap;">${esc(message)}</p>`,
+        <p style="font-family:Arial,sans-serif;white-space:pre-wrap;">${esc(message)}</p>
+        <p style="font-family:Arial,sans-serif;font-size:12px;color:#666;">
+          Sent from the contact form on iasavionics.ca. Reply to this email to answer ${esc(name)} directly.
+        </p>`,
     });
-    if (error) throw new Error(error.message);
     return NextResponse.json({ ok: true });
-  } catch {
+  } catch (err) {
+    console.error("[contact] send failed:", err);
     return NextResponse.json(
       {
         error:

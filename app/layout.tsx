@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
     default:
-      "IAS Avionics | Innovative Aerospace Services Ltd. — Kelowna, BC",
+      "IAS Avionics | Innovative Aerospace Services Ltd. | Kelowna, BC",
     template: "%s | IAS Avionics",
   },
   description,

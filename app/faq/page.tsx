@@ -39,7 +39,7 @@ export default function FaqPage() {
           <SectionHeading
             eyebrow="Answers"
             title="What Operators Ask Us Most"
-            intro="If your question isn't covered here, call us or send an inquiry — we'll give you a straight answer before anything is quoted."
+            intro="If your question isn't covered here, call us or send an inquiry. We'll give you a straight answer before anything is quoted."
           />
           <Faq entries={faq} />
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Honeypot from "@/components/forms/Honeypot";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -8,6 +9,8 @@ export default function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [trap, setTrap] = useState("");
+  const [startedAt] = useState(() => Date.now());
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -17,7 +20,7 @@ export default function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, website: trap, startedAt }),
       });
       if (!res.ok) {
         const data = await res.json().catch(() => null);
@@ -39,7 +42,7 @@ export default function ContactForm() {
           Message sent
         </h3>
         <p className="mt-3 text-sm leading-relaxed">
-          Thank you — we&rsquo;ve received your inquiry and will get back to
+          Thank you, we&rsquo;ve received your inquiry and will get back to
           you. For Aircraft on Ground emergencies, email{" "}
           <a href="mailto:aog@iasavionics.ca" className="font-semibold text-aerored">
             aog@iasavionics.ca
@@ -55,7 +58,8 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="grid gap-5">
+    <form onSubmit={onSubmit} className="relative grid gap-5">
+      <Honeypot value={trap} onChange={setTrap} />
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="c-name" className="label">
@@ -127,7 +131,7 @@ export default function ContactForm() {
           {status === "loading" ? "Sending…" : "Send Message"}
         </button>
         <p className="max-w-sm text-xs leading-relaxed text-charcoal/70">
-          Aircraft on Ground? Don&rsquo;t use this form — email{" "}
+          Aircraft on Ground? Don&rsquo;t use this form. Email{" "}
           <a href="mailto:aog@iasavionics.ca" className="font-semibold text-aerored">
             aog@iasavionics.ca
           </a>{" "}

@@ -20,7 +20,7 @@ export const site = {
     country: "Canada",
   },
   hours: [
-    { days: "Monday – Friday", hours: "8:00 a.m. – 5:00 p.m." },
+    { days: "Monday to Friday", hours: "8:00 a.m. to 5:00 p.m." },
     { days: "Saturday", hours: "By appointment · AOG service available" },
     { days: "Sunday", hours: "By appointment · AOG service available" },
   ],
@@ -70,5 +70,6 @@ export const nav: readonly NavItem[] = [
     ],
   },
   { href: "/aog", label: "AOG" },
+  { href: "/testimonials", label: "Testimonials" },
   { href: "/contact", label: "Contact" },
 ] as const;

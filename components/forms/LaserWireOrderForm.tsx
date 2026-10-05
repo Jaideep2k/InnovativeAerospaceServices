@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { wireCatalog, findWire } from "@/lib/wireCatalog";
+import Honeypot from "@/components/forms/Honeypot";
 
 type Row = {
   code: string;
@@ -18,6 +19,8 @@ export default function LaserWireOrderForm() {
   const [contact, setContact] = useState({ name: "", email: "", phone: "", notes: "" });
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [trap, setTrap] = useState("");
+  const [startedAt] = useState(() => Date.now());
 
   const setRow = (i: number, patch: Partial<Row>) =>
     setRows((r) => r.map((row, idx) => (idx === i ? { ...row, ...patch } : row)));
@@ -46,6 +49,8 @@ export default function LaserWireOrderForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           contact,
+          website: trap,
+          startedAt,
           rows: validRows.map((r) => ({
             ...r,
             wireType: findWire(r.code)?.description ?? "",
@@ -75,7 +80,7 @@ export default function LaserWireOrderForm() {
           Quotation request received
         </h3>
         <p className="mt-3 text-sm leading-relaxed">
-          Thank you — your laser marked wire request has been sent. IAS will
+          Thank you, your laser marked wire request has been sent. IAS will
           contact you with a quotation for your order. Submitting this form is
           a request for a quotation only; it is not a purchase or a confirmed
           order.
@@ -85,7 +90,8 @@ export default function LaserWireOrderForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate={false}>
+    <form onSubmit={onSubmit} noValidate={false} className="relative">
+      <Honeypot value={trap} onChange={setTrap} />
       {/* Contact block */}
       <fieldset className="grid gap-5 sm:grid-cols-2">
         <legend className="mb-4 font-heading text-lg font-extrabold uppercase text-jet">
@@ -183,7 +189,7 @@ export default function LaserWireOrderForm() {
                       <optgroup key={cat.category} label={cat.category}>
                         {cat.wires.map((w) => (
                           <option key={w.code} value={w.code}>
-                            {w.code} — {w.description}
+                            {w.code}: {w.description}
                           </option>
                         ))}
                       </optgroup>
@@ -261,7 +267,7 @@ export default function LaserWireOrderForm() {
           {status === "loading" ? "Sending…" : "Request a Quotation"}
         </button>
         <p className="max-w-md text-xs leading-relaxed text-charcoal/70">
-          Submitting this form is a request for a quotation — it is not an
+          Submitting this form is a request for a quotation. It is not an
           immediate purchase or a confirmed order. IAS will contact you with a
           quote.
         </p>

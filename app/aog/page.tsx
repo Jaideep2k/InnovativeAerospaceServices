@@ -9,7 +9,7 @@ import Stagger from "@/components/motion/Stagger";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = pageMeta({
-  title: "AOG — Aircraft on Ground Support",
+  title: "AOG: Aircraft on Ground Support",
   description:
     "Aircraft on Ground support from IAS Avionics in Kelowna, BC. Email aog@iasavionics.ca or call 778-753-0250. Commercial-aircraft AOG requests are treated as a priority.",
   path: "/aog",
@@ -23,7 +23,7 @@ export default function AogPage() {
         image="/images/aog/iasavionics-aircraft-on-ground-service.jpg"
         imageAlt="Aircraft on the ground awaiting AOG support"
         words={["Aircraft", "on", "Ground?"]}
-        sub="AOG situations are expensive and disruptive — especially for commercial operators. We treat commercial-aircraft AOG requests as a priority and work to return your aircraft to service as quickly as practical."
+        sub="AOG situations are expensive and disruptive, especially for commercial operators. We treat commercial-aircraft AOG requests as a priority and work to return your aircraft to service as quickly as practical."
       >
         <a href={`mailto:${site.aogEmail}`} className="btn-red">
           Email {site.aogEmail}
@@ -62,7 +62,7 @@ export default function AogPage() {
       </section>
 
       <section className="py-20">
-        <div className="wrap grid items-start gap-12 lg:grid-cols-2">
+        <div className="wrap grid grid-cols-1 items-start gap-12 lg:grid-cols-2">
           <div>
             <SectionHeading
               eyebrow="How AOG support works"
@@ -115,7 +115,7 @@ export default function AogPage() {
               <Link href="/contact" className="font-semibold text-aerored underline underline-offset-2">
                 general contact form
               </Link>{" "}
-              for inquiries and scheduling — and keep this page handy for when
+              for inquiries and scheduling, and keep this page handy for when
               it counts.
             </p>
           </Reveal>

@@ -4,7 +4,50 @@ Per the content brief, the following must be confirmed with the client before
 final publication. Nothing below was invented — each item is either published
 on the current site or was flagged in the brief as unverified.
 
-## PRIORITY — claims added from the client's August 2026 content document
+## PRIORITY: image licensing (October 2026 audit)
+
+Most photos on the site came from the old WordPress site, but the new copies
+had their embedded credits stripped. The **old site's copies still carry Adobe
+Stock / photographer credits**, so these are confirmed stock photos. They are
+only safe to use if IAS (or the agency that built the old site) bought a
+license. **Please send the Adobe Stock license history or invoices**, or we
+replace them before launch:
+
+| Image | Where it shows | Embedded credit |
+|---|---|---|
+| heli_overfire-slider.jpg | **Home hero**, helicopter page | (c) Edgar Bullon (also sold via Adobe Stock / iStock) |
+| heli_waterbucket-slider.jpg | Home, Contact | (c)toa555 - stock.adobe.com |
+| careers/helicopter-bg.jpg | Careers | (c)Klara - stock.adobe.com |
+| careers/jet-bg.jpg | Careers | (c)Robert Asento - stock.adobe.com |
+| projects/project-placement-3-1.jpg | **Projects gallery** | (c)Nicolas - stock.adobe.com |
+
+Also need a source/receipt for:
+- **Seaplane-over-Como-Lake.jpeg** (Projects) and
+  **mechanic-checking-aircraft-components-while-working-in-repair-station.jpeg**
+  (About). Both added to the old site in 2026, no metadata, stock-style names.
+  If they came from a free tier (e.g. Freepik), attribution is required.
+  The seaplane (Lake Como, Italy) also should not sit in a gallery of IAS work.
+- 2019 images with no metadata that look like stock: about-Innovative-Aerospace,
+  jets-rewiring, rewire-projects, helicopter-electrical, helicopter-wiring, both
+  AOG images, avionics-service, aviation-wiring-footer, avionics-services-kelowna.
+  Ask the 2019 web designer whether these were IAS photos or bought stock.
+- Confirm the Bell 212, laser-wire and harness photos were shot by IAS staff
+  (EXIF supports this for the Bell 212 series).
+- Hero video: built from 5 Pexels clips (Pexels license allows commercial use,
+  no attribution). The clip URLs were not recorded; the developer should log them.
+
+Logos:
+- **Transport Canada** flag signature: generally reserved for the federal
+  government (Federal Identity Program). Recommend replacing with text,
+  e.g. "Transport Canada Approved Maintenance Organization 85-17".
+- **EASA** logo: EASA restricts use of its logo; approved organisations
+  normally cite their approval number instead. Need the EASA approval reference.
+- **Garmin**: the site uses the plain Garmin corporate logo. Dealers are
+  normally licensed for the *Authorized Dealer* mark (already supplied, unused).
+  Confirm with the Garmin rep, or switch to the dealer mark.
+- **AEA**: use the official "AEA Member" artwork if available; confirm membership is current.
+
+## PRIORITY: claims added from the client's August 2026 content document
 
 These went live at the client's written instruction. Two of them are claims we
 would not normally publish without documentary backing. Flagging them here so
@@ -60,19 +103,22 @@ there is a record, not to block them.
   currently routes applicants to the general contact form/phone.)
 
 ## Copy
-- The home hero uses the client-requested copy: "Offering the highest
-  standard in custom engineered avionics and electrical installations,
-  repairs, harness building & design. Due to the extreme wildfire season,
-  it's critical to start planning your winter maintenance."
-  - "custom engineered" sits in tension with the brief's engineering
-    disclaimer (IAS does not perform regulated engineering directly —
-    engineering is outsourced to registered third-party firms). The
-    disclaimer is stated on the About, Services and helicopter pages.
-    **Confirm the hero phrasing is acceptable.**
-  - The wildfire/winter-maintenance line is a seasonal announcement. It reads
-    correctly for late summer; **it should be revisited each spring.**
+- **Home hero now matches the old site, at the client's request:** headline
+  "Innovative Aerospace Services in Kelowna, BC", subheader "Every Wire.
+  Every Panel. Every Flight." then "Offering the highest standard in custom
+  engineered avionics and electrical installations, repairs, harness building
+  & design. Due to the extreme wildfire season, it's critical to start planning
+  your winter maintenance. Contact our team today." "Because it matters" was
+  removed from the hero (it still appears on the brief loading screen).
+  - "custom engineered" sits in tension with the engineering disclaimer
+    (engineering is outsourced to registered third-party firms). **Confirm.**
+  - The wildfire/winter-maintenance line is seasonal; **revisit each spring.**
+- **All em dashes were removed from the site copy** at the client's request.
 - Testimonials (Will Hudson, Steve Jones) are verbatim from the current
-  website — confirm permission to republish.
+  website. Confirm permission to republish.
+- **New /testimonials page.** Visitors' reviews post immediately; Nancy is
+  emailed each one with a one-click "remove" link. When IAS has Google reviews,
+  we add a "Review us on Google" button and copy Google reviews onto the page.
 
 ## Services
 - **New capability claim:** "Aircraft lighting systems" was added to the
@@ -105,11 +151,15 @@ there is a record, not to block them.
   automatically, so edits only need making in one place.
 
 ## Technical
-- Set `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `CONTACT_TO_EMAIL`,
-  `LASER_WIRE_TO_EMAIL` in `.env` (see `.env.example`) to activate the two
-  forms. Until then both forms fail gracefully with phone/email fallbacks.
-  **Both forms are currently inactive** — every "Request an Estimate" CTA
-  reaches the form, but submissions cannot be delivered until this is done.
+- **Email:** the old site sends form mail through SendGrid (from
+  no-reply@iasavionics.ca to nancy@iasavionics.ca). The new site uses the same
+  SendGrid account and sender, so **no DNS changes**. Needed: a new SendGrid API
+  key (Mail Send only) set as `SENDGRID_API_KEY` in Vercel. After launch, revoke
+  the key the WordPress site uses (it was in the site export we received).
+- **Reviews storage:** connect Upstash for Redis in Vercel (free tier).
+- Old WordPress URLs redirect to their new pages (bookmarks keep working), and
+  the five AMO certificate PDFs from the old About page are back on /about.
+- Confirm the AMO certificate PDFs are the current versions.
 - Structured data (`LocalBusiness` on every page, `FAQPage` on `/faq`),
   `robots.txt`, canonical URLs and an OpenGraph share image were added in this
   pass. An earlier version of this file claimed structured data was already in

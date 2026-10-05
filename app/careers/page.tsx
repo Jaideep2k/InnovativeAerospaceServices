@@ -32,7 +32,7 @@ export default function CareersPage() {
       <Hero
         compact
         image="/images/careers/helicopter-bg.jpg"
-        imageAlt="Helicopter on the ground — the kind of rotary-wing aircraft IAS teams work on"
+        imageAlt="Helicopter on the ground, the kind of rotary-wing aircraft IAS teams work on"
         words={["Build", "a", "Career", "in", "Avionics"]}
         sub="A growing team whose work ranges from light-aircraft projects to complete medium- and heavy-rotary-wing rewiring."
       >
@@ -42,7 +42,7 @@ export default function CareersPage() {
       </Hero>
 
       <section className="py-20">
-        <div className="wrap grid items-start gap-12 lg:grid-cols-2">
+        <div className="wrap grid grid-cols-1 items-start gap-12 lg:grid-cols-2">
           <div>
             <SectionHeading
               eyebrow="Who we look for"
@@ -61,7 +61,7 @@ export default function CareersPage() {
               <p className="mt-8 text-sm leading-relaxed">
                 Compensation and benefits depend on your qualifications and
                 assessment. Please note: current openings are subject to
-                confirmation — contact us to ask about present availability.
+                confirmation. Contact us to ask about present availability.
               </p>
             </Reveal>
           </div>
@@ -69,7 +69,7 @@ export default function CareersPage() {
             <div className="relative aspect-[4/3] overflow-hidden">
               <Image
                 src="/images/careers/jet-bg.jpg"
-                alt="Corporate jet — fixed-wing aircraft IAS teams also support"
+                alt="Corporate jet, fixed-wing aircraft IAS teams also support"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"

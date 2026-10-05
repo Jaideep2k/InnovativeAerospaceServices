@@ -3,7 +3,7 @@ import { site } from "@/lib/site";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = `${site.legalName} — avionics, rewiring and electrical services, Kelowna BC`;
+export const alt = `${site.legalName}: avionics, rewiring and electrical services, Kelowna BC`;
 
 export default function OpengraphImage() {
   return new ImageResponse(

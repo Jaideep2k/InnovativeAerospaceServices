@@ -13,6 +13,7 @@ const routes = [
   "/aog",
   "/laser-marked-wire-order-form",
   "/faq",
+  "/testimonials",
   "/careers",
   "/contact",
 ];

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import { esc, isEmail, mailConfigured, sendMail } from "@/lib/mail";
+import { looksAutomated } from "@/lib/spam";
 import { findWire } from "@/lib/wireCatalog";
 
 type OrderRow = {
@@ -8,15 +9,10 @@ type OrderRow = {
   qty: string;
 };
 
-const esc = (s: string) =>
-  s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-
 export async function POST(req: Request) {
-  const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.RESEND_FROM_EMAIL;
   const to = process.env.LASER_WIRE_TO_EMAIL || "nancy@iasavionics.ca";
 
-  if (!apiKey || !from) {
+  if (!mailConfigured()) {
     return NextResponse.json(
       {
         error:
@@ -29,6 +25,8 @@ export async function POST(req: Request) {
   let body: {
     contact?: { name?: string; email?: string; phone?: string; notes?: string };
     rows?: OrderRow[];
+    website?: string;
+    startedAt?: number;
   };
   try {
     body = await req.json();
@@ -36,13 +34,15 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
   }
 
+  if (looksAutomated(body)) return NextResponse.json({ ok: true });
+
   const name = body.contact?.name?.trim() ?? "";
   const email = body.contact?.email?.trim() ?? "";
   const phone = body.contact?.phone?.trim() ?? "";
   const notes = body.contact?.notes?.trim() ?? "";
   const rows = (body.rows ?? []).filter((r) => r.code && r.length && r.qty);
 
-  if (!name || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (!name || !isEmail(email)) {
     return NextResponse.json(
       { error: "Please provide your name and a valid email address." },
       { status: 400 }
@@ -56,7 +56,7 @@ export async function POST(req: Request) {
   }
   if (rows.length > 200) {
     return NextResponse.json(
-      { error: "Too many lines in one request — please email the order form instead." },
+      { error: "Too many lines in one request. Please email the order form instead." },
       { status: 400 }
     );
   }
@@ -75,12 +75,12 @@ export async function POST(req: Request) {
     .join("");
 
   const html = `
-    <h2 style="font-family:Arial,sans-serif;">Laser Marked Wire — Quotation Request (website)</h2>
+    <h2 style="font-family:Arial,sans-serif;">Laser Marked Wire Quotation Request (website)</h2>
     <p style="font-family:Arial,sans-serif;">
       <strong>Name:</strong> ${esc(name)}<br/>
       <strong>Email:</strong> ${esc(email)}<br/>
-      <strong>Phone:</strong> ${esc(phone) || "—"}<br/>
-      <strong>Notes:</strong> ${esc(notes) || "—"}
+      <strong>Phone:</strong> ${esc(phone) || "Not provided"}<br/>
+      <strong>Notes:</strong> ${esc(notes) || "None"}
     </p>
     <table style="border-collapse:collapse;font-family:Arial,sans-serif;font-size:13px;">
       <thead>
@@ -99,17 +99,15 @@ export async function POST(req: Request) {
     </p>`;
 
   try {
-    const resend = new Resend(apiKey);
-    const { error } = await resend.emails.send({
-      from,
+    await sendMail({
       to,
       replyTo: email,
-      subject: `Laser Marked Wire quotation request — ${name}`,
+      subject: `Laser Marked Wire quotation request from ${name}`,
       html,
     });
-    if (error) throw new Error(error.message);
     return NextResponse.json({ ok: true });
-  } catch {
+  } catch (err) {
+    console.error("[laser-wire-order] send failed:", err);
     return NextResponse.json(
       {
         error:

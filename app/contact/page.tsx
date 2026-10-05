@@ -11,7 +11,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = pageMeta({
   title: "Contact",
   description:
-    "Contact IAS Avionics at Kelowna International Airport (CYLW) — 1-6280 Airport Way, Kelowna, BC. Call 778-753-0250 or send a general inquiry.",
+    "Contact IAS Avionics at Kelowna International Airport (CYLW), 1-6280 Airport Way, Kelowna, BC. Call 778-753-0250 or send a general inquiry.",
   path: "/contact",
 });
 
@@ -23,7 +23,7 @@ export default function ContactPage() {
         image="/images/contact/Innovative-Aerospace-Services-jets-rewiring.jpg"
         imageAlt="Corporate jets at the IAS Avionics facility"
         words={["Talk", "to", "IAS"]}
-        sub="Estimates and expected expenses are discussed before work begins — tell us about your aircraft and what you need."
+        sub="Estimates and expected expenses are discussed before work begins. Tell us about your aircraft and what you need."
       >
         <a href={site.phoneHref} className="btn-red">
           Call {site.phone}
@@ -31,7 +31,7 @@ export default function ContactPage() {
       </Hero>
 
       <section id="estimate" className="scroll-mt-28 py-16">
-        <div className="wrap grid items-start gap-12 lg:grid-cols-[1fr_1.2fr]">
+        <div className="wrap grid grid-cols-1 items-start gap-12 lg:grid-cols-[1fr_1.2fr]">
           {/* Contact details */}
           <div>
             <SectionHeading
@@ -136,7 +136,7 @@ export default function ContactPage() {
         <div className="wrap relative">
           <Reveal>
             <p className="max-w-2xl font-heading text-2xl font-extrabold uppercase leading-snug tracking-tight">
-              Field support available across the Okanagan, Southern BC — and
+              Field support available across the Okanagan, Southern BC and
               beyond, where arrangements can be made.
             </p>
           </Reveal>

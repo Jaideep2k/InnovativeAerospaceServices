@@ -7,3 +7,10 @@ out/
 next-env.d.ts
 .DS_Store
 .claude-recordings/
+
+# Old WordPress site export: contains wp-config.php credentials, a SQL dump
+# with API keys and customer PII. Reference only; never commit or deploy.
+/www.iasavionics.ca/
+
+# Local testimonials store used when no Redis is configured (dev only)
+/.data/

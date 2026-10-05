@@ -30,7 +30,7 @@ export default function LaserWirePage() {
 
       {/* Instructions */}
       <section className="py-16">
-        <div className="wrap grid items-start gap-12 lg:grid-cols-[1fr_1.4fr]">
+        <div className="wrap grid grid-cols-1 items-start gap-12 lg:grid-cols-[1fr_1.4fr]">
           <div>
             <SectionHeading
               eyebrow="How ordering works"
@@ -54,7 +54,7 @@ export default function LaserWirePage() {
               </ol>
               <p className="mt-6 border-l-4 border-aerored pl-4 text-sm leading-relaxed">
                 Submitting an order form is a <strong>request for a
-                quotation</strong> — it is not an immediate purchase or a
+                quotation</strong>. It is not an immediate purchase or a
                 confirmed order.
               </p>
               <p className="mt-4 text-sm leading-relaxed">
@@ -141,7 +141,7 @@ export default function LaserWirePage() {
                         <tr key={`${cat.category}-${w.code}`} className="border-b border-silver/40">
                           <td className="p-3 font-semibold text-jet">{w.code}</td>
                           <td className="p-3">{w.description}</td>
-                          <td className="p-3">{w.milSpec ?? "—"}</td>
+                          <td className="p-3">{w.milSpec ?? "-"}</td>
                         </tr>
                       ))}
                     </Fragment>

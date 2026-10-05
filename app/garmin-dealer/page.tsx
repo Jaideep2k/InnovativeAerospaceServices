@@ -12,7 +12,7 @@ import Stagger from "@/components/motion/Stagger";
 export const metadata: Metadata = pageMeta({
   title: "Authorized Garmin Dealer",
   description:
-    "IAS Avionics is the only Garmin dealer in Kelowna — supplying and installing Garmin glass cockpit systems, GPS navigation, flight displays, ADS-B, audio panels and transponders for fixed-wing aircraft and helicopters.",
+    "IAS Avionics is the only Garmin dealer in Kelowna, supplying and installing Garmin glass cockpit systems, GPS navigation, flight displays, ADS-B, audio panels and transponders for fixed-wing aircraft and helicopters.",
   path: "/garmin-dealer",
 });
 
@@ -61,13 +61,13 @@ export default function GarminDealerPage() {
             <SectionHeading
               eyebrow="Garmin at IAS"
               title="Trusted Garmin Avionics, Properly Integrated"
-              intro="Innovative Aerospace Services is proud to offer industry-leading avionics solutions as a trusted Garmin dealer and installer — the only Garmin dealer in Kelowna. Garmin products are recognized worldwide for their reliability, innovation and advanced technology, giving pilots and operators enhanced situational awareness, safety and operational efficiency."
+              intro="Innovative Aerospace Services is proud to offer industry-leading avionics solutions as a trusted Garmin dealer and installer, the only Garmin dealer in Kelowna. Garmin products are recognized worldwide for their reliability, innovation and advanced technology, giving pilots and operators enhanced situational awareness, safety and operational efficiency."
             />
             <Reveal delay={0.15}>
               <div className="mt-8 flex flex-wrap items-center gap-6">
                 <Image
                   src="/brand/garmin-logo.png"
-                  alt="Garmin logo — IAS Avionics is an authorized Garmin Aviation dealer"
+                  alt="Garmin logo: IAS Avionics is an authorized Garmin Aviation dealer"
                   width={892}
                   height={240}
                   className="h-12 w-auto"
@@ -96,7 +96,7 @@ export default function GarminDealerPage() {
         id="products"
         eyebrow="Products & solutions"
         title="The Garmin Range We Supply & Install"
-        intro="We supply and install a wide range of Garmin avionics — selected around your aircraft type, operating requirements and budget."
+        intro="We supply and install a wide range of Garmin avionics, selected around your aircraft type, operating requirements and budget."
         items={[
           "Glass cockpit systems",
           "GPS navigation systems",
@@ -122,7 +122,7 @@ export default function GarminDealerPage() {
         eyebrow="Expert installation & support"
         title="Installed to Specification, Every Time"
         intro="Our technicians are experienced in avionics integration and aircraft electrical systems, ensuring your Garmin equipment is installed to manufacturer specifications and applicable regulatory requirements. We work closely with aircraft owners and operators to develop customized solutions that align with operational needs, aircraft type and budget."
-        note="A Garmin upgrade is only as good as the wiring behind it. Because we are an avionics and electrical shop first, we can address aging wiring, connectors and circuit protection as part of the same visit — see our aircraft rewiring services."
+        note="A Garmin upgrade is only as good as the wiring behind it. Because we are an avionics and electrical shop first, we can address aging wiring, connectors and circuit protection as part of the same visit. See our aircraft rewiring services."
         image="/images/projects/212-MAR-B2-1.jpg"
         imageAlt="Bell 212 airframe stripped back with new wiring being routed at the IAS facility"
         cta="Plan an Installation"

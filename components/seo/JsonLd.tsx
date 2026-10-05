@@ -5,7 +5,7 @@ function JsonLd({ data }: { data: Record<string, unknown> }) {
   return (
     <script
       type="application/ld+json"
-      // Serialised server-side from our own typed content — no user input.
+      // Serialised server-side from our own typed content, no user input.
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
   );
@@ -40,7 +40,7 @@ export function LocalBusinessJsonLd() {
         email: site.aogEmail,
         foundingDate: String(site.established),
         description:
-          "Specialized avionics and electrical services for rotary-wing and fixed-wing aircraft — installations, aircraft rewiring, wiring harnesses, laser wire marking, troubleshooting, repairs and recertifications at Kelowna International Airport (CYLW).",
+          "Specialized avionics and electrical services for rotary-wing and fixed-wing aircraft: installations, aircraft rewiring, wiring harnesses, laser wire marking, troubleshooting, repairs and recertifications at Kelowna International Airport (CYLW).",
         address: {
           "@type": "PostalAddress",
           streetAddress: site.address.street,
@@ -71,7 +71,7 @@ export function LocalBusinessJsonLd() {
   );
 }
 
-/** FAQPage schema generated from lib/faq.ts — keep in sync automatically. */
+/** FAQPage schema generated from lib/faq.ts, kept in sync automatically. */
 export function FaqJsonLd() {
   return (
     <JsonLd

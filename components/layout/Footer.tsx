@@ -4,7 +4,7 @@ import { site, nav } from "@/lib/site";
 import Reveal from "@/components/motion/Reveal";
 
 /**
- * Flat inventory of every page, for the footer link grid — the footer is where
+ * Flat inventory of every page, for the footer link grid. The footer is where
  * the whole site should be reachable in one place, so nested nav groups are
  * expanded and de-duplicated here.
  */
@@ -36,7 +36,7 @@ export default function Footer() {
             </p>
             <p className="mt-2 max-w-xl text-sm text-silver">
               Talk to us about avionics, rewiring, harnesses, recertifications
-              or an upcoming project — estimates are discussed before work
+              or an upcoming project. Estimates are discussed before work
               begins.
             </p>
           </Reveal>

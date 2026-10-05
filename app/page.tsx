@@ -10,20 +10,22 @@ import Stagger from "@/components/motion/Stagger";
 import Counter from "@/components/motion/Counter";
 import HoverLift from "@/components/motion/HoverLift";
 import { site } from "@/lib/site";
+import TestimonialCard from "@/components/ui/TestimonialCard";
+import { getTestimonials } from "@/lib/testimonials";
 
 export const metadata: Metadata = pageMeta({
   title: "Home",
   fullTitle:
-    "IAS Avionics | Avionics, Aircraft Rewiring & Wiring Harnesses — Kelowna, BC",
+    "IAS Avionics | Avionics, Aircraft Rewiring & Wiring Harnesses | Kelowna, BC",
   description:
-    "Avionics installations, aircraft rewiring, wiring harnesses and laser wire marking for helicopters and fixed-wing aircraft. Transport Canada AMO 85-17, authorized Garmin dealer — Kelowna International Airport (CYLW), BC.",
+    "Avionics installations, aircraft rewiring, wiring harnesses and laser wire marking for helicopters and fixed-wing aircraft. Transport Canada AMO 85-17, authorized Garmin dealer at Kelowna International Airport (CYLW), BC.",
   path: "/",
 });
 
 const services = [
   {
     title: "Avionics",
-    text: "Installations, integration with existing systems, equipment sales, troubleshooting, repairs and scheduled recertifications — including RVSM-capable aircraft.",
+    text: "Installations, integration with existing systems, equipment sales, troubleshooting, repairs and scheduled recertifications, including RVSM-capable aircraft.",
     image: "/images/services/avionics-service.jpg",
     alt: "Avionics technician working on an aircraft instrument panel",
     href: "/services/avionics",
@@ -37,7 +39,7 @@ const services = [
   },
   {
     title: "Wiring Harnesses",
-    text: "Custom, replacement, standard and accessory harnesses — built, installed and documented with laser-marked aircraft wire.",
+    text: "Custom, replacement, standard and accessory harnesses: built, installed and documented with laser-marked aircraft wire.",
     image: "/images/home/Innovative-Aerospace-Services-helicopter-wiring.jpg",
     alt: "Helicopter wiring harness work in progress",
     href: "/services/wiring-harnesses",
@@ -51,7 +53,7 @@ const services = [
   },
   {
     title: "Troubleshooting & Repairs",
-    text: "Avionics and electrical fault diagnosis, wiring inspections and repairs — at our Kelowna facility or, where arranged, at your location.",
+    text: "Avionics and electrical fault diagnosis, wiring inspections and repairs at our Kelowna facility or, where arranged, at your location.",
     image: "/images/home/Innovative-Aerospace-Services-helicopter-electrical.jpg",
     alt: "Technician troubleshooting helicopter electrical systems",
     href: "/services#troubleshooting",
@@ -102,7 +104,11 @@ const sectors = [
   "Remote aviation operations",
 ];
 
-export default function HomePage() {
+// Testimonials are live data; new reviews also revalidate this page instantly.
+export const revalidate = 300;
+
+export default async function HomePage() {
+  const testimonials = (await getTestimonials()).slice(0, 3);
   return (
     <>
       <Hero
@@ -110,8 +116,8 @@ export default function HomePage() {
         imageAlt="Helicopter flying over a wildfire during aerial firefighting operations"
         video="/videos/hero-broll.mp4"
         videoMobile="/videos/hero-broll-mobile.mp4"
-        words={["Every", "Wire.", "Every", "Panel.", "Every", "Flight."]}
-        tagline="Because it matters."
+        words={["Innovative", "Aerospace", "Services", "in", "Kelowna,", "BC"]}
+        tagline="Every Wire. Every Panel. Every Flight."
         sub="Offering the highest standard in custom engineered avionics and electrical installations, repairs, harness building & design. Due to the extreme wildfire season, it's critical to start planning your winter maintenance. Contact our team today."
         badge={
           <div className="flex items-center gap-4 border-l-4 border-aerored pl-4">
@@ -160,7 +166,7 @@ export default function HomePage() {
               <Counter value={4} duration={1} />
             </p>
             <p className="mt-1 text-sm uppercase tracking-[0.16em] text-silver">
-              AMO ratings — Avionics · Components · Instruments · Structures
+              AMO ratings: Avionics · Components · Instruments · Structures
             </p>
           </Reveal>
         </div>
@@ -196,7 +202,7 @@ export default function HomePage() {
             />
             <Image
               src="/images/home/Chamber_2022Award-Techn-Innovator-Logo.png"
-              alt="Kelowna Chamber Business Excellence Awards 2022 Winner — Technology Innovator of the Year"
+              alt="Kelowna Chamber Business Excellence Awards 2022 Winner, Technology Innovator of the Year"
               width={724}
               height={362}
               className="h-16 w-auto"
@@ -211,7 +217,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="What we do"
             title="Avionics & Electrical Services"
-            intro="High-quality installations, troubleshooting, repairs, aircraft rewiring, wiring-harness building, equipment sales and aircraft-support services — dependable work that keeps performing behind your panels for years."
+            intro="High-quality installations, troubleshooting, repairs, aircraft rewiring, wiring-harness building, equipment sales and aircraft-support services. Dependable work that keeps performing behind your panels for years."
           />
           <Stagger className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((s) => (
@@ -251,13 +257,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Why IAS — brand pillars */}
+      {/* Why IAS: brand pillars */}
       <section className="bg-charcoal py-20 text-white">
         <div className="wrap">
           <SectionHeading
             eyebrow="Why IAS"
             title="Why Operators Choose IAS"
-            intro="Our team is extensively trained and held accountable for high standards, proper procedures and quality workmanship — with open, direct communication and estimates discussed before work begins."
+            intro="Our team is extensively trained and held accountable for high standards, proper procedures and quality workmanship, with open, direct communication and estimates discussed before work begins."
             dark
           />
           <Stagger className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-5">
@@ -292,13 +298,13 @@ export default function HomePage() {
             <SectionHeading
               eyebrow="Equipment & Installations"
               title="Authorized Garmin Aviation Dealer"
-              intro="IAS is an authorized Garmin Aviation dealer — the only Garmin dealer in Kelowna — and installs systems from leading avionics manufacturers, properly integrating new equipment with your aircraft's existing systems to improve reliability, functionality, compliance and operational capability."
+              intro="IAS is an authorized Garmin Aviation dealer (the only Garmin dealer in Kelowna) and installs systems from leading avionics manufacturers, properly integrating new equipment with your aircraft's existing systems to improve reliability, functionality, compliance and operational capability."
             />
             <Reveal delay={0.15}>
               <div className="mt-8 flex flex-wrap items-center gap-6">
                 <Image
                   src="/brand/garmin-logo.png"
-                  alt="Garmin logo — IAS is an authorized Garmin Aviation dealer"
+                  alt="Garmin logo: IAS is an authorized Garmin Aviation dealer"
                   width={892}
                   height={240}
                   className="h-12 w-auto"
@@ -321,7 +327,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="How we work"
             title="Consultation Before Installation"
-            intro="Our consultation and estimate process verifies expected expenses before a project begins — you understand the proposed work and approve the project before installation starts."
+            intro="Our consultation and estimate process verifies expected expenses before a project begins, so you understand the proposed work and approve the project before installation starts."
             center
           />
           <Stagger className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -344,7 +350,7 @@ export default function HomePage() {
               {
                 n: "04",
                 t: "Install & Verify",
-                d: "Installation, integration, testing and documentation — quality workmanship behind every panel.",
+                d: "Installation, integration, testing and documentation, with quality workmanship behind every panel.",
               },
             ].map((step) => (
               <div key={step.n} className="border-t-4 border-aerored pt-5">
@@ -372,7 +378,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="Who we support"
             title="From Corporate Jets to Working Helicopters"
-            intro="We support commercial helicopters, corporate jets and general aviation aircraft — light aircraft through medium and heavy helicopters — at our Kelowna facility, your hangar, in the field, or at remote operating locations when arrangements can be made."
+            intro="We support commercial helicopters, corporate jets and general aviation aircraft (light aircraft through medium and heavy helicopters) at our Kelowna facility, your hangar, in the field, or at remote operating locations when arrangements can be made."
             dark
           />
           <Stagger className="mt-10 flex flex-wrap gap-3">
@@ -402,33 +408,23 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Testimonials — verbatim from the current website */}
-      <section className="py-20">
+      {/* Testimonials: latest reviews, full list and review form on /testimonials */}
+      <section id="testimonials" className="scroll-mt-28 py-20">
         <div className="wrap">
           <SectionHeading eyebrow="Testimonials" title="What Customers Say" center />
-          <Stagger className="mx-auto mt-12 grid max-w-4xl gap-8 md:grid-cols-2">
-            <blockquote className="border-l-4 border-aerored bg-white p-7 shadow-sm">
-              <p className="text-sm leading-relaxed">
-                &ldquo;IAS rebuilt my PC12 and Beaver panels with new Garmin.
-                IAS is highly professional. The avionics are properly
-                configured/integrated, and the records packages are perfect.
-                A+&rdquo;
-              </p>
-              <footer className="mt-4 font-heading text-sm font-bold uppercase tracking-[0.12em] text-jet">
-                — Will Hudson
-              </footer>
-            </blockquote>
-            <blockquote className="border-l-4 border-aerored bg-white p-7 shadow-sm">
-              <p className="text-sm leading-relaxed">
-                &ldquo;Extreme high level Quality Avionics, Knowledge and
-                Service! Absolute pleasure working with Nancy. Thank
-                you&rdquo;
-              </p>
-              <footer className="mt-4 font-heading text-sm font-bold uppercase tracking-[0.12em] text-jet">
-                — Steve Jones
-              </footer>
-            </blockquote>
+          <Stagger className="mx-auto mt-12 grid max-w-6xl gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {testimonials.map((t) => (
+              <TestimonialCard key={t.id} t={t} />
+            ))}
           </Stagger>
+          <Reveal className="mt-12 flex flex-wrap justify-center gap-4">
+            <Link href="/testimonials" className="btn-ghost-dark">
+              Read All Reviews
+            </Link>
+            <Link href="/testimonials#write-a-review" className="btn-red">
+              Write a Review
+            </Link>
+          </Reveal>
         </div>
       </section>
 

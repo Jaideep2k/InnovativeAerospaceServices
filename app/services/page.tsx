@@ -29,7 +29,7 @@ export default function ServicesPage() {
         image="/images/services/avionics-services-kelowna.jpg"
         imageAlt="Helicopter instrument panel with avionics test connectors at the IAS Kelowna facility"
         words={["Avionics", "&", "Electrical", "Services"]}
-        sub="Installations, rewiring, harnesses, laser wire marking, troubleshooting, repairs, recertifications and aircraft-support services — for rotary-wing and fixed-wing aircraft."
+        sub="Installations, rewiring, harnesses, laser wire marking, troubleshooting, repairs, recertifications and aircraft-support services for rotary-wing and fixed-wing aircraft."
       >
         <Link href="/contact#estimate" className="btn-red">
           Request an Estimate
@@ -132,7 +132,7 @@ export default function ServicesPage() {
           <SectionHeading
             eyebrow="The IAS advantage"
             title="Personalized Service, Serious Capability"
-            intro="Rotary-wing and fixed-wing support, wiring harnesses, avionics equipment, troubleshooting, installations, recertifications and customized project support — backed by a reputation we take pride in within the aerospace community. Where available, we can help arrange expedited shipping of wiring harnesses and avionics equipment. Our team stays informed about new avionics technologies and helps you identify solutions suited to your aircraft, operating requirements and budget."
+            intro="Rotary-wing and fixed-wing support, wiring harnesses, avionics equipment, troubleshooting, installations, recertifications and customized project support, backed by a reputation we take pride in within the aerospace community. Where available, we can help arrange expedited shipping of wiring harnesses and avionics equipment. Our team stays informed about new avionics technologies and helps you identify solutions suited to your aircraft, operating requirements and budget."
           />
           <Reveal className="mt-8 flex flex-wrap gap-4">
             <Link href="/contact#estimate" className="btn-red">
