@@ -301,15 +301,9 @@ export default async function HomePage() {
               intro="IAS is an authorized Garmin Aviation dealer (the only Garmin dealer in Kelowna) and installs systems from leading avionics manufacturers, properly integrating new equipment with your aircraft's existing systems to improve reliability, functionality, compliance and operational capability."
             />
             <Reveal delay={0.15}>
-              <div className="mt-8 flex flex-wrap items-center gap-6">
-                <Image
-                  src="/brand/garmin-logo.png"
-                  alt="Garmin logo: IAS is an authorized Garmin Aviation dealer"
-                  width={892}
-                  height={240}
-                  className="h-12 w-auto"
-                />
-                <Link href="/garmin-dealer" className="btn-red">
+              {/* Stacked at equal width: side by side they don't fit the half-width column. */}
+              <div className="mt-8 flex flex-col gap-4 sm:w-max">
+                <Link href="/garmin-dealer" className="btn-red border-2 border-aerored">
                   Explore Garmin Solutions
                 </Link>
                 <Link href="/contact#estimate" className="btn-ghost-dark">
