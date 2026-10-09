@@ -84,8 +84,8 @@ export default function AboutPage() {
           <Reveal delay={0.2}>
             <div className="relative aspect-[4/3] overflow-hidden">
               <Image
-                src="/images/about/about-Innovative-Aerospace.jpg"
-                alt="IAS Avionics technicians working on aircraft avionics"
+                src="/images/b412/b412-cabin-floor-wiring.jpg"
+                alt="IAS technicians rewiring a Bell 412 cabin at the Kelowna facility"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
@@ -118,8 +118,8 @@ export default function AboutPage() {
           <Reveal delay={0.2}>
             <div className="relative aspect-[4/3] overflow-hidden">
               <Image
-                src="/images/home/mechanic-checking-aircraft-components-while-working-in-repair-station.jpeg"
-                alt="Technician checking aircraft components in the repair station"
+                src="/images/about/ias-technicians-cockpit-install.jpg"
+                alt="IAS technicians working inside an aircraft cockpit during an avionics installation"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"

@@ -91,8 +91,8 @@ export default function CareersPage() {
           <Reveal delay={0.2}>
             <div className="relative aspect-[4/3] overflow-hidden">
               <Image
-                src="/images/careers/jet-bg.jpg"
-                alt="Corporate jet, fixed-wing aircraft IAS teams also support"
+                src="/images/b412/b412-harness-apprentice.jpg"
+                alt="IAS apprentice and technician installing a new wiring harness during a Bell 412 rewire"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
@@ -137,11 +137,11 @@ export default function CareersPage() {
             <div className="grid overflow-hidden border border-white/15 md:grid-cols-[2fr_3fr]">
               <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[280px]">
                 <Image
-                  src="/images/projects/ias-avionics-212-MAY-A1-1.jpg"
-                  alt="Bell 212 in the IAS hangar during a complete rewire"
+                  src="/images/b412/b412-harness-routing.jpg"
+                  alt="IAS technicians routing a newly built wiring harness through a Bell 412"
                   fill
                   sizes="(max-width: 768px) 100vw, 40vw"
-                  className="object-cover"
+                  className="object-cover object-right"
                 />
               </div>
               <div className="p-8 sm:p-10">
