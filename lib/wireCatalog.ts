@@ -1,7 +1,8 @@
 /**
  * Wire catalogue transcribed verbatim from the supplied
  * IAS-WWW-LASER-WIRE-MARKING-ORDER-TEMPLATE.xlsx (sheet "IAS LASER WIRE ORDER FORM").
- * Order-entry columns in the original: WIRE CODE · LENGTH (") · WIRE TYPE · QTY.
+ * Order-entry columns in the original: WIRE CODE (the text to laser-print) ·
+ * LENGTH (") · WIRE TYPE (a code from this catalogue) · QTY.
  * Do not edit terminology without client confirmation.
  */
 

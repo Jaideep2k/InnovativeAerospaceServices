@@ -10,14 +10,26 @@ export const site = {
   domain: "iasavionics.ca",
   url: "https://iasavionics.ca",
   aogEmail: "aog@iasavionics.ca",
-  laserWireEmail: "nancy@iasavionics.ca",
+  /** Laser marked wire orders and general inquiries (contact form) go here. */
+  laserWireEmail: "kim@iasavionics.ca",
+  contactEmail: "kim@iasavionics.ca",
   address: {
     facility: "CYLW Kelowna International Airport",
-    street: "1-6280 Airport Way",
+    street: "1-6280 Lapointe Drive",
     city: "Kelowna",
     region: "BC",
     postal: "V1V 1S1",
     country: "Canada",
+  },
+  /** Google Maps search for the facility (footer map, "We've moved" notice). */
+  mapsQuery: "6280 Lapointe Drive, Kelowna, BC V1V 1S1",
+  /**
+   * "We've moved" notice shown once per visitor. It retires itself after
+   * `until`, so it never needs to be remembered and taken down by hand.
+   */
+  moveNotice: {
+    from: "Airport Way",
+    until: "2027-06-30",
   },
   hours: [
     { days: "Monday to Friday", hours: "8:00 a.m. to 5:00 p.m." },
@@ -25,6 +37,12 @@ export const site = {
     { days: "Sunday", hours: "By appointment · AOG service available" },
   ],
 } as const;
+
+/** Opens the facility in Google Maps (new tab). */
+export const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.mapsQuery)}`;
+
+/** Turn-by-turn directions to the facility (new tab). */
+export const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(site.mapsQuery)}`;
 
 export type NavItem = {
   href: string;
@@ -49,6 +67,7 @@ export const nav: readonly NavItem[] = [
     children: [
       { href: "/about", label: "About Us" },
       { href: "/projects", label: "Our Projects" },
+      { href: "/dealers", label: "Our Dealers" },
       { href: "/careers", label: "Careers" },
       { href: "/faq", label: "FAQ" },
     ],
@@ -65,6 +84,10 @@ export const nav: readonly NavItem[] = [
       {
         href: "/helicopter-avionics-electrical",
         label: "Helicopter Avionics & Electrical",
+      },
+      {
+        href: "/fixed-wing-avionics-electrical",
+        label: "Fixed-Wing Avionics & Electrical",
       },
       { href: "/garmin-dealer", label: "Authorized Garmin Dealer" },
     ],

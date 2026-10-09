@@ -26,14 +26,20 @@ Every form sends through `lib/mail.ts`. Copy `.env.example` to `.env.local`
   verified there and no DNS changes are needed.
 - `RESEND_API_KEY`: alternative; requires verifying iasavionics.ca in Resend.
 
-Optional: `MAIL_FROM`, `CONTACT_TO_EMAIL`, `LASER_WIRE_TO_EMAIL`. All default to
-the old site's behaviour (from no-reply@, to nancy@iasavionics.ca).
+Optional: `MAIL_FROM`, `CONTACT_TO_EMAIL`, `LASER_WIRE_TO_EMAIL`. Mail is sent
+from no-reply@iasavionics.ca (as on the old site) and, by default, every form
+goes to kim@iasavionics.ca (`site.contactEmail` / `site.laserWireEmail` in
+`lib/site.ts`).
 
 | Form | Old site | New site |
 |---|---|---|
-| Contact (`/contact`) | Forminator form, emailed nancy@ | `/api/contact`, emails inbox, Reply-To = visitor |
-| Laser marked wire | Download .xlsx, email it to nancy@ | Online multi-line form (`/api/laser-wire-order`) **and** the same .xlsx download |
-| Write a review | CF7/Forminator form emailed nancy@, posted by hand | `/testimonials`: posts instantly, emails nancy@ with a one-click removal link |
+| Contact (`/contact`) | Forminator form, emailed nancy@ | `/api/contact`, emails kim@, Reply-To = visitor |
+| Laser marked wire | Download .xlsx, email it to nancy@ | Online multi-line form (`/api/laser-wire-order`, emails kim@) **and** the same .xlsx download, emailed to kim@ |
+| Write a review | CF7/Forminator form emailed nancy@, posted by hand | `/testimonials`: posts instantly, emails kim@ with a one-click removal link |
+
+Laser wire lines follow the .xlsx columns WIRE CODE · LENGTH (") · WIRE TYPE ·
+QTY. On the site, WIRE CODE is labelled **Marked wire code** (free text to
+laser-print, no length limit) and WIRE TYPE is picked from `lib/wireCatalog.ts`.
 
 Spam: every form has a hidden honeypot field and a minimum fill time
 (`lib/spam.ts`); the review form also blocks links and rate-limits per visitor.

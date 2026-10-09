@@ -25,11 +25,24 @@ export default function OpengraphImage() {
             style={{
               display: "flex",
               marginTop: 40,
-              fontSize: 84,
+              fontSize: 96,
               fontWeight: 800,
               lineHeight: 1.05,
               letterSpacing: "-0.02em",
               color: "#FFFFFF",
+              textTransform: "uppercase",
+            }}
+          >
+            Because It Matters.
+          </div>
+          <div
+            style={{
+              display: "flex",
+              marginTop: 22,
+              fontSize: 36,
+              fontWeight: 700,
+              letterSpacing: "0.04em",
+              color: "#E31B23",
               textTransform: "uppercase",
             }}
           >
@@ -38,10 +51,10 @@ export default function OpengraphImage() {
           <div
             style={{
               display: "flex",
-              marginTop: 28,
+              marginTop: 24,
               fontSize: 30,
               color: "#BFC3C7",
-              maxWidth: 900,
+              maxWidth: 1040,
             }}
           >
             Avionics · Aircraft Rewiring · Wiring Harnesses · Laser Wire Marking

@@ -13,7 +13,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = pageMeta({
   title: "Laser Marked Wire Order Form",
   description:
-    "Order laser-marked aircraft wire from IAS Avionics. Fill out each field per marked wire requested and receive a quotation for your order.",
+    "Order laser-marked wire from IAS Avionics. Enter the marked wire code, wire type, length and quantity for each wire and receive a quotation for your order.",
   path: "/laser-marked-wire-order-form",
 });
 
@@ -23,9 +23,9 @@ export default function LaserWirePage() {
       <Hero
         compact
         image="/images/laser-wire/laser-marked-wire.jpg"
-        imageAlt="Laser-marked aircraft wire with printed wire identification"
+        imageAlt="Laser-marked wire with printed wire identification"
         words={["Laser", "Marked", "Wire", "Order", "Form"]}
-        sub="Request a quotation for laser-marked aircraft wire. Fill out one row per marked wire you need, submit, and we'll come back to you with pricing."
+        sub="Request a quotation for laser-marked wire. Tell us what to print, on which wire type, the length and quantity, and we'll come back to you with pricing."
       />
 
       {/* Instructions */}
@@ -39,7 +39,7 @@ export default function LaserWirePage() {
             <Reveal delay={0.1}>
               <ol className="mt-7 space-y-4">
                 {[
-                  "Fill out each field per marked wire you are requesting.",
+                  "For each marked wire, enter the marked wire code (the text to print), wire type, length and quantity.",
                   "Submit the online form below (or save the downloadable order form).",
                   `Downloaded forms are emailed to ${site.laserWireEmail}.`,
                   "You will be contacted with a quote for your order.",
@@ -107,8 +107,8 @@ export default function LaserWirePage() {
         <div className="wrap">
           <SectionHeading
             eyebrow="Reference"
-            title="Wire Codes & Types"
-            intro="Wire codes, types and MIL-SPEC references from the IAS laser wire order form. MIL-SPEC availability is stock dependent."
+            title="Wire Types"
+            intro="Wire types, descriptions and MIL-SPEC references from the IAS laser wire order form. Choose one per line in the Wire type field. MIL-SPEC availability is stock dependent."
           />
           <Reveal delay={0.1}>
             <div className="mt-10 overflow-x-auto">
@@ -116,7 +116,7 @@ export default function LaserWirePage() {
                 <thead>
                   <tr className="bg-jet text-white">
                     <th className="p-3 font-heading text-xs font-bold uppercase tracking-[0.14em]">
-                      Wire Code
+                      Wire Type
                     </th>
                     <th className="p-3 font-heading text-xs font-bold uppercase tracking-[0.14em]">
                       Description

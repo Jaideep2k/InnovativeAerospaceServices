@@ -14,3 +14,10 @@ next-env.d.ts
 
 # Local testimonials store used when no Redis is configured (dev only)
 /.data/
+
+# Photo Drop inbox (dev-only tool): raw photos dropped onto the local site,
+# waiting to be optimized into public/images. Not deployed.
+/photo-drops/
+
+# Frames extracted from the IAS YouTube video for photo picking (local only).
+/video-frames/

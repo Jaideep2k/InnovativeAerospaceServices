@@ -42,10 +42,10 @@ export const faq: FaqEntry[] = [
   },
   {
     q: "Do you travel to the aircraft, or does it have to come to you?",
-    a: "Both. We assist customers at our Kelowna facility, at your hangar or location, in the field, and at remote operating locations when arrangements can be made.",
+    a: "Both. We assist customers at our Kelowna facility, at your hangar or location, in the field, and at remote operating locations when arrangements are made.",
   },
   {
     q: "Do you perform the engineering for a modification?",
-    a: "IAS does not perform regulated engineering work directly. Where a project requires it, engineering is supplied by registered third-party engineering firms. We help you plan, coordinate, document, install and complete the project.",
+    a: "IAS does not perform regulated engineering work directly. When a project requires it, engineering is supplied by registered third-party engineering firms. We help you plan, coordinate, document, install and complete the project.",
   },
 ];

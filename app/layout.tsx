@@ -5,6 +5,8 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Preloader from "@/components/motion/Preloader";
 import PageTransition from "@/components/motion/PageTransition";
+import MovedNotice from "@/components/ui/MovedNotice";
+import PhotoDrop from "@/components/dev/PhotoDrop";
 import { LocalBusinessJsonLd } from "@/components/seo/JsonLd";
 import { site } from "@/lib/site";
 
@@ -56,6 +58,9 @@ export default function RootLayout({
           <main>{children}</main>
           <Footer />
         </PageTransition>
+        <MovedNotice />
+        {/* Dev-only photo placement tool; never rendered in production builds. */}
+        {process.env.NODE_ENV === "development" && <PhotoDrop />}
       </body>
     </html>
   );

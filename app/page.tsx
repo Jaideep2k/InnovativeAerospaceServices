@@ -12,6 +12,8 @@ import HoverLift from "@/components/motion/HoverLift";
 import { site } from "@/lib/site";
 import TestimonialCard from "@/components/ui/TestimonialCard";
 import { getTestimonials } from "@/lib/testimonials";
+import YouTubeEmbed from "@/components/ui/YouTubeEmbed";
+import { videos, youtubeId } from "@/lib/media";
 
 export const metadata: Metadata = pageMeta({
   title: "Home",
@@ -25,21 +27,21 @@ export const metadata: Metadata = pageMeta({
 const services = [
   {
     title: "Avionics",
-    text: "Installations, integration with existing systems, equipment sales, troubleshooting, repairs and scheduled recertifications, including RVSM-capable aircraft.",
-    image: "/images/services/avionics-service.jpg",
-    alt: "Avionics technician working on an aircraft instrument panel",
+    text: "Garmin and leading-brand avionics, installed and integrated with your aircraft's existing systems, from a single radio to a full glass cockpit.",
+    image: "/images/home/Innovative-Aerospace-rewire-services.jpg",
+    alt: "Helicopter instrument panel fitted with avionics by IAS",
     href: "/services/avionics",
   },
   {
     title: "Aircraft Rewiring",
     text: "Complete and partial rewires that replace aging or unreliable wiring and track down intermittent electrical problems at the source.",
-    image: "/images/home/Innovative-Aerospace-rewire-services.jpg",
-    alt: "Aircraft wiring bundles during a rewiring project",
+    image: "/images/b412/b412-harness-check.jpg",
+    alt: "IAS technicians checking a new wiring harness during a Bell 412 rewire",
     href: "/services/aircraft-rewiring",
   },
   {
     title: "Wiring Harnesses",
-    text: "Custom, replacement, standard and accessory harnesses: built, installed and documented with laser-marked aircraft wire.",
+    text: "Top-quality custom and standard harnesses, assembled in-house with laser-marked wire.",
     image: "/images/home/Innovative-Aerospace-Services-helicopter-wiring.jpg",
     alt: "Helicopter wiring harness work in progress",
     href: "/services/wiring-harnesses",
@@ -48,19 +50,19 @@ const services = [
     title: "Laser Wire Marking",
     text: "In-house laser wire marking for clear identification, installation consistency and maintenance efficiency. Order online.",
     image: "/images/laser-wire/laser-marked-wire.jpg",
-    alt: "Laser-marked aircraft wire with printed identification",
+    alt: "Laser-marked wire with printed identification",
     href: "/laser-marked-wire-order-form",
   },
   {
     title: "Troubleshooting & Repairs",
-    text: "Avionics and electrical fault diagnosis, wiring inspections and repairs at our Kelowna facility or, where arranged, at your location.",
+    text: "Avionics and electrical fault diagnosis, wiring inspections and repairs.",
     image: "/images/home/Innovative-Aerospace-Services-helicopter-electrical.jpg",
     alt: "Technician troubleshooting helicopter electrical systems",
     href: "/services#troubleshooting",
   },
   {
     title: "Inspections & Recertifications",
-    text: "Altimeter, transponder and encoder 24-month recertifications, ATE 24-month recertifications, ELT 12-month recertification and ADS-B support.",
+    text: "Altimeter, transponder and encoder 24-month recertifications, ELT 12-month recertification and ADS-B support.",
     image: "/images/services/avionics-services-kelowna.jpg",
     alt: "Avionics test equipment during a recertification",
     href: "/services#recertifications",
@@ -104,6 +106,9 @@ const sectors = [
   "Remote aviation operations",
 ];
 
+const video = videos.overview;
+const videoId = youtubeId(video.youtubeId);
+
 // Testimonials are live data; new reviews also revalidate this page instantly.
 export const revalidate = 300;
 
@@ -117,16 +122,16 @@ export default async function HomePage() {
         video="/videos/hero-broll.mp4"
         videoMobile="/videos/hero-broll-mobile.mp4"
         words={["Innovative", "Aerospace", "Services", "in", "Kelowna,", "BC"]}
-        tagline="Every Wire. Every Panel. Every Flight."
+        tagline="Because It Matters."
         sub="Offering the highest standard in custom engineered avionics and electrical installations, repairs, harness building & design. Due to the extreme wildfire season, it's critical to start planning your winter maintenance. Contact our team today."
         badge={
           <div className="flex items-center gap-4 border-l-4 border-aerored pl-4">
             <Image
               src="/brand/garmin-logo-white.png"
               alt="Garmin"
-              width={892}
-              height={240}
-              className="h-6 w-auto"
+              width={1200}
+              height={173}
+              className="h-4 w-auto"
             />
             <p className="font-heading text-xs font-bold uppercase tracking-[0.22em] text-white">
               Authorized Aviation Dealer
@@ -189,9 +194,9 @@ export default async function HomePage() {
             <Image
               src="/brand/garmin-logo.png"
               alt="Authorized Garmin Aviation dealer"
-              width={892}
-              height={240}
-              className="h-8 w-auto"
+              width={1200}
+              height={173}
+              className="h-5 w-auto"
             />
             <Image
               src="/brand/aea-logo.png"
@@ -257,12 +262,30 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Video: starts playing as it scrolls into view */}
+      {videoId && (
+        <section id="video" aria-label="IAS video" className="scroll-mt-28 bg-jet py-20 text-white">
+          <div className="wrap">
+            <SectionHeading
+              eyebrow="See how it works"
+              title="A Complete Rewire, Start to Finish"
+              intro="A Bell 412 Classic, completely rewired at our Kelowna facility: main airframe, dual 3-axis autopilot, avionics and utilities, completed in 60 days."
+              dark
+              center
+            />
+            <Reveal delay={0.1} className="mx-auto mt-12 max-w-5xl">
+              <YouTubeEmbed id={videoId} title={video.title} poster={video.poster} autoplayInView />
+            </Reveal>
+          </div>
+        </section>
+      )}
+
       {/* Why IAS: brand pillars */}
       <section className="bg-charcoal py-20 text-white">
         <div className="wrap">
           <SectionHeading
             eyebrow="Why IAS"
-            title="Why Operators Choose IAS"
+            title="Every Wire. Every Panel. Every Flight."
             intro="Our team is extensively trained and held accountable for high standards, proper procedures and quality workmanship, with open, direct communication and estimates discussed before work begins."
             dark
           />
@@ -372,7 +395,7 @@ export default async function HomePage() {
           <SectionHeading
             eyebrow="Who we support"
             title="From Corporate Jets to Working Helicopters"
-            intro="We support commercial helicopters, corporate jets and general aviation aircraft (light aircraft through medium and heavy helicopters) at our Kelowna facility, your hangar, in the field, or at remote operating locations when arrangements can be made."
+            intro="We support commercial helicopters, corporate jets and general aviation aircraft (light aircraft through medium and heavy helicopters) at our Kelowna facility, your hangar, in the field, or at remote operating locations when arrangements are made."
             dark
           />
           <Stagger className="mt-10 flex flex-wrap gap-3">
@@ -386,7 +409,11 @@ export default async function HomePage() {
             ))}
           </Stagger>
           <Reveal className="mt-10">
-            <p className="max-w-2xl text-sm leading-relaxed text-silver">
+            <p className="font-heading text-sm font-bold uppercase tracking-[0.14em] text-white">
+              Rotary- and fixed-wing, from Robinson to Sikorsky and Cessna to
+              Learjet.
+            </p>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-silver">
               We can also help you plan around recertification deadlines,
               scheduled maintenance and seasonal operating requirements.
             </p>

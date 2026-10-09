@@ -12,8 +12,8 @@ export default function AogBand() {
             Aircraft on Ground?
           </p>
           <p className="mt-1 max-w-xl text-sm text-white/90">
-            AOG support to help minimize downtime. Commercial-aircraft AOG
-            requests are treated as a priority.
+            AOG support to help minimize downtime. AOG situations are treated
+            as a priority.
           </p>
         </Reveal>
         <div className="flex flex-wrap items-center gap-3">

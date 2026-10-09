@@ -1,19 +1,21 @@
 import { Resend } from "resend";
+import { site } from "@/lib/site";
 
 /**
  * One delivery path for every form on the site.
  *
  * The previous WordPress site sent all form mail through SendGrid (SMTP relay,
- * from no-reply@iasavionics.ca to nancy@iasavionics.ca). Using SendGrid's HTTP
- * API with the same sender means the domain authentication already set up in
- * that SendGrid account keeps working, with no DNS changes at launch.
+ * from no-reply@iasavionics.ca). Using SendGrid's HTTP API with the same sender
+ * means the domain authentication already set up in that SendGrid account
+ * keeps working, with no DNS changes at launch.
  *
  * Resend remains supported as an alternative: whichever key is set is used,
  * SendGrid first.
  */
 
 export const DEFAULT_FROM = "Innovative Aerospace Services Ltd <no-reply@iasavionics.ca>";
-export const DEFAULT_INBOX = "nancy@iasavionics.ca";
+/** kim@iasavionics.ca: contact-form inquiries and new-review alerts. */
+export const DEFAULT_INBOX = site.contactEmail;
 
 export type Mail = {
   to: string;
@@ -26,7 +28,10 @@ export function mailConfigured(): boolean {
   return Boolean(process.env.SENDGRID_API_KEY || process.env.RESEND_API_KEY);
 }
 
-/** Where general inquiries and reviews go. Same inbox the old site used. */
+/**
+ * Where general inquiries (contact form) and new-review alerts go:
+ * CONTACT_TO_EMAIL if set, otherwise kim@iasavionics.ca (site.contactEmail).
+ */
 export function inbox(): string {
   return process.env.CONTACT_TO_EMAIL || DEFAULT_INBOX;
 }

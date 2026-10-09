@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
 import { esc, inbox, isEmail, mailConfigured, sendMail } from "@/lib/mail";
 import { looksAutomated } from "@/lib/spam";
+import { site } from "@/lib/site";
 
 export async function POST(req: Request) {
   if (!mailConfigured()) {
     return NextResponse.json(
       {
-        error:
-          "The contact form is temporarily unavailable. Please call 778-753-0250.",
+        error: `The contact form is temporarily unavailable. Please call ${site.phone} or email ${site.contactEmail}.`,
       },
       { status: 503 }
     );
@@ -66,8 +66,7 @@ export async function POST(req: Request) {
     console.error("[contact] send failed:", err);
     return NextResponse.json(
       {
-        error:
-          "We couldn't send your message right now. Please call 778-753-0250 or try again later.",
+        error: `We couldn't send your message right now. Please call ${site.phone}, email ${site.contactEmail}, or try again later.`,
       },
       { status: 502 }
     );

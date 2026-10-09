@@ -30,7 +30,7 @@ const gallery = [
   },
   {
     src: "/images/projects/laser-marked-wire.jpg",
-    alt: "Laser-marked aircraft wire prepared for a rewire project",
+    alt: "Laser-marked wire prepared for a rewire project",
   },
   {
     src: "/images/projects/project-placement-3-1.jpg",
@@ -63,7 +63,7 @@ export default function ProjectsPage() {
           <SectionHeading
             eyebrow="Featured project"
             title="Bell 212 Complete Rewire"
-            intro="A complete rewire of a Bell 212, replacing aircraft wiring end to end, with laser-marked wire, new harness construction and supporting documentation. The photographs below are from this project."
+            intro="A complete rewire of a Bell 212, replacing aircraft wiring end to end, with laser-marked wire, new harness assembly and supporting documentation. The photographs below are from this project."
           />
           <Stagger className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {gallery.map((img) => (

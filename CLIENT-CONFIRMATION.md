@@ -42,9 +42,12 @@ Logos:
   e.g. "Transport Canada Approved Maintenance Organization 85-17".
 - **EASA** logo: EASA restricts use of its logo; approved organisations
   normally cite their approval number instead. Need the EASA approval reference.
-- **Garmin**: the site uses the plain Garmin corporate logo. Dealers are
-  normally licensed for the *Authorized Dealer* mark (already supplied, unused).
-  Confirm with the Garmin rep, or switch to the dealer mark.
+- **Garmin**: now uses Garmin's current official wordmark (no delta),
+  downloaded from Garmin's brand style guide (October 2026), replacing the
+  older delta logo. The *Authorized Dealer* mark appears on the avionics page.
+  Garmin photos on the avionics and Garmin dealer pages come from the
+  aviation imagery in IAS's Garmin Dealer Resource Center, which Garmin
+  provides to dealers for marketing.
 - **AEA**: use the official "AEA Member" artwork if available; confirm membership is current.
 
 ## PRIORITY: claims added from the client's August 2026 content document
@@ -70,18 +73,22 @@ there is a record, not to block them.
   if IAS can state e.g. a typical Bell 212 rewire turnaround, we should use
   that number instead.
 
-## Address — CHANGED
+## Address — MOVED (October 2026)
 
-- Now **1-6280 Airport Way, Kelowna, BC V1V 1S1**, per the client's August 2026
-  document (p.5). This replaced `1-6280 Lapointe Drive` which the previous
-  build used. A third variant (`101-6197 Airport Way`) appears on some
-  third-party listings.
-- **Postal code still needs confirming.** The document gave the street but no
-  postal code, so `V1V 1S1` was carried over from the Lapointe Drive address.
-  A wrong postal code degrades map placement in the LocalBusiness structured
-  data. Everything else renders from `lib/site.ts`, so this is a one-line fix.
+- IAS has moved from Airport Way to **1-6280 Lapointe Drive, Kelowna, BC
+  V1V 1S1** (client, October 2026). The site now shows Lapointe Drive
+  everywhere, a small Google map with a pin in the footer and on /contact, and
+  a one-time "We've moved" pop-up for visitors that retires itself after
+  30 June 2027 (`site.moveNotice` in `lib/site.ts`).
+- **Confirm the exact unit number, spelling and postal code.** The client
+  wrote "LaPointe Drive"; the site uses the common "Lapointe Drive" spelling
+  and carries over `1-6280` and `V1V 1S1` from the earlier Lapointe address.
+  The pop-up names the old street ("Airport Way") but not the old number.
+- Is the new location still described as "CYLW Kelowna International
+  Airport"? The site still says so.
 - Third-party listings (Google Business Profile, AEA directory, Garmin dealer
-  locator) should be updated to match, or local search rankings suffer.
+  locator) must be updated too, or the map pin and local search will point to
+  the old address.
 
 ## Certifications / credentials (shown on About + Home)
 - AMO 85-17 — still current?
@@ -95,15 +102,47 @@ there is a record, not to block them.
   used.
 
 ## People / emails
-- Nancy (nancy@iasavionics.ca) is the laser-marked-wire contact — confirm.
-- **Which inbox should receive general contact-form submissions?**
-  (`CONTACT_TO_EMAIL` in `.env` — currently unset; the form returns a
-  graceful "call us" message until configured.)
+- **Kim (kim@iasavionics.ca)** now receives laser-marked-wire orders, the
+  contact form and new-review alerts (October 2026; replaced Nancy).
+  `CONTACT_TO_EMAIL` / `LASER_WIRE_TO_EMAIL` can still override per form.
 - Which email should receive employment applications? (Careers page
   currently routes applicants to the general contact form/phone.)
 
+## October 2026 revision round (to confirm)
+- **"Because It Matters" is now the home hero tagline** (the mission
+  statement); "Every Wire. Every Panel. Every Flight." moved to the "Why IAS"
+  section.
+- Terminology now used site-wide: "snag" (never "squawk"), "gremlins" in
+  quotes, "when arrangements are made".
+- **"Fastest downtime in the industry"** now appears on the rewiring,
+  helicopter and fixed-wing pages, with the method described only as
+  proprietary. Same substantiation caution as "fastest rewire" below.
+- **YouTube video** (youtube.com/watch?v=swcJK33OTzc) now on the home page
+  (plays muted as it scrolls into view) and the helicopter page. The intro
+  line says the Bell 412 Classic rewire was "completed in 60 days", taken
+  from the video's own end card. Confirm. A concrete figure like this is the
+  best support for the "fastest downtime" claim. The player hides YouTube's
+  auto-generated captions (they only read "[Music]"); IAS can also turn
+  auto-captions off for this video in YouTube Studio.
+- All Services card for Avionics Installations & Upgrades now starts with
+  Got "Gremlins?" as instructed. "Gremlins" are wiring faults, so confirm
+  that is the card intended (the rewiring card also uses "gremlins").
+- Service 08 is now "Potential Future Requirements: ADS-B" and refers to
+  Canadian operating requirements instead of U.S. ones.
+- **Aircraft manufacturer list** (Careers, helicopter and fixed-wing pages)
+  was dictated, so some names are interpretations: "Aero Spitale" =
+  Aérospatiale, "Augusta Westland" = AgustaWestland, "Mall" = Maule, "Vans" =
+  Van's. **Bell** was added (not in the list, but the Bell 212/412 rewires are
+  on the site). Airbus is listed as a helicopter maker. Confirm.
+- **New /dealers page ("Our Dealers")**, logos taken from Maxcraft
+  Avionics' website at the client's request. Manufacturer logos are their
+  owners' trademarks: **confirm IAS is an authorized dealer for every brand
+  shown**, and ideally get official dealer-kit logos from each manufacturer.
+- **New /fixed-wing-avionics-electrical page**, built from services already on
+  the site so fixed-wing owners have a page of their own. Confirm.
+
 ## Copy
-- **Home hero now matches the old site, at the client's request:** headline
+- **Home hero (earlier round), since updated (see above):** headline
   "Innovative Aerospace Services in Kelowna, BC", subheader "Every Wire.
   Every Panel. Every Flight." then "Offering the highest standard in custom
   engineered avionics and electrical installations, repairs, harness building
@@ -116,7 +155,7 @@ there is a record, not to block them.
 - **All em dashes were removed from the site copy** at the client's request.
 - Testimonials (Will Hudson, Steve Jones) are verbatim from the current
   website. Confirm permission to republish.
-- **New /testimonials page.** Visitors' reviews post immediately; Nancy is
+- **New /testimonials page.** Visitors' reviews post immediately; Kim is
   emailed each one with a one-click "remove" link. When IAS has Google reviews,
   we add a "Review us on Google" button and copy Google reviews onto the page.
 

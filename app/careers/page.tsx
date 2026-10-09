@@ -7,11 +7,12 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/motion/Reveal";
 import Stagger from "@/components/motion/Stagger";
 import { site } from "@/lib/site";
+import { rotaryMakers, fixedMakers } from "@/lib/aircraft";
 
 export const metadata: Metadata = pageMeta({
   title: "Careers",
   description:
-    "Join a growing avionics team in Kelowna, BC. IAS Avionics welcomes applications from Avionics Aircraft Maintenance Engineers and experienced avionics apprentices.",
+    "Join a growing avionics team in Kelowna, BC. IAS Avionics welcomes Avionics AMEs and experienced apprentices to work on rotary-wing and fixed-wing aircraft.",
   path: "/careers",
 });
 
@@ -25,6 +26,29 @@ const qualities = [
   "Professional",
   "Comfortable across changing aircraft and project scopes",
 ];
+
+/**
+ * Manufacturer lists flow down CSS columns (alphabetical reads top to bottom).
+ * At lg the rotary list is one column and the fixed-wing list two, so all
+ * three columns line up at equal widths. Revealed as a block, not staggered:
+ * per-item transforms inside CSS columns can glitch at column breaks.
+ */
+const fleet = [
+  {
+    label: "Rotary-wing",
+    makers: rotaryMakers,
+    span: "",
+    cols: "columns-2 lg:columns-1",
+  },
+  {
+    label: "Fixed-wing",
+    makers: fixedMakers,
+    span: "lg:col-span-2",
+    cols: "columns-2",
+  },
+];
+
+const rewireProjects = ["Bell 212", "Bell 412", "AS332"];
 
 export default function CareersPage() {
   return (
@@ -41,15 +65,21 @@ export default function CareersPage() {
         </Link>
       </Hero>
 
+      {/* Who we look for */}
       <section className="py-20">
-        <div className="wrap grid grid-cols-1 items-start gap-12 lg:grid-cols-2">
+        <div className="wrap grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
           <div>
             <SectionHeading
               eyebrow="Who we look for"
               title="Avionics AMEs & Experienced Apprentices"
-              intro="IAS welcomes interest from Avionics Aircraft Maintenance Engineers and experienced avionics apprentices. Our work spans multiple rotary-wing and fixed-wing aircraft, including major rewire and retrofit projects on Bell 212, Bell 412 and AS332 helicopters."
+              intro="IAS welcomes interest from Avionics Aircraft Maintenance Engineers and experienced avionics apprentices. Our work spans multiple rotary-wing and fixed-wing aircraft."
             />
-            <Stagger className="mt-8 grid gap-2.5 sm:grid-cols-2">
+            <Reveal delay={0.1}>
+              <h3 className="mt-10 font-heading text-sm font-extrabold uppercase tracking-[0.16em] text-jet">
+                Qualities we look for
+              </h3>
+            </Reveal>
+            <Stagger className="mt-5 grid gap-2.5 sm:grid-cols-2">
               {qualities.map((q) => (
                 <p key={q} className="flex items-start gap-2.5 text-sm leading-relaxed">
                   <span aria-hidden="true" className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-aerored" />
@@ -57,13 +87,6 @@ export default function CareersPage() {
                 </p>
               ))}
             </Stagger>
-            <Reveal delay={0.1}>
-              <p className="mt-8 text-sm leading-relaxed">
-                Compensation and benefits depend on your qualifications and
-                assessment. Please note: current openings are subject to
-                confirmation. Contact us to ask about present availability.
-              </p>
-            </Reveal>
           </div>
           <Reveal delay={0.2}>
             <div className="relative aspect-[4/3] overflow-hidden">
@@ -75,23 +98,116 @@ export default function CareersPage() {
                 className="object-cover"
               />
             </div>
-            <div className="mt-6 border border-silver/50 bg-white p-7">
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Aircraft you'll work on */}
+      <section className="bg-jet py-20 text-white">
+        <div className="wrap">
+          <SectionHeading
+            eyebrow="Aircraft you'll work on"
+            title="Rotary-Wing & Fixed-Wing"
+            intro="The aircraft manufacturers our team has worked on, from light aircraft to heavy helicopters."
+            dark
+          />
+
+          <div className="mt-12 grid gap-12 lg:grid-cols-3 lg:gap-10">
+            {fleet.map((g, i) => (
+              <Reveal key={g.label} delay={0.1 * i} className={g.span}>
+                <h3 className="border-t-4 border-aerored pt-4 font-heading text-sm font-extrabold uppercase tracking-[0.18em] text-white">
+                  {g.label}
+                </h3>
+                <ul className={`mt-2 gap-x-8 ${g.cols}`}>
+                  {g.makers.map((m) => (
+                    <li
+                      key={m.name}
+                      className="break-inside-avoid border-b border-white/10 py-3.5 font-heading text-base font-bold text-white sm:text-lg lg:text-xl"
+                    >
+                      {m.name}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* Rewire highlight */}
+          <Reveal className="mt-16">
+            <div className="grid overflow-hidden border border-white/15 md:grid-cols-[2fr_3fr]">
+              <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[280px]">
+                <Image
+                  src="/images/projects/ias-avionics-212-MAY-A1-1.jpg"
+                  alt="Bell 212 in the IAS hangar during a complete rewire"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-8 sm:p-10">
+                <p className="eyebrow">Project highlight</p>
+                <h3 className="mt-3 font-heading text-2xl font-extrabold uppercase tracking-tight text-white">
+                  Major Rewires &amp; Retrofits
+                </h3>
+                <span className="red-rule mt-4 h-0.5 w-10" />
+                <p className="mt-5 text-sm leading-relaxed text-silver">
+                  Major rewire and retrofit projects our team has worked on
+                  include:
+                </p>
+                <div className="mt-5 flex flex-wrap gap-3">
+                  {rewireProjects.map((r) => (
+                    <span
+                      key={r}
+                      className="border border-white/25 px-4 py-2 font-heading text-xs font-bold uppercase tracking-[0.14em] text-white"
+                    >
+                      {r}
+                    </span>
+                  ))}
+                </div>
+                <Link
+                  href="/projects"
+                  className="mt-7 inline-block text-sm font-semibold text-white underline underline-offset-4 hover:text-aerored"
+                >
+                  See our projects →
+                </Link>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* How to apply */}
+      <section id="apply" className="scroll-mt-28 py-20">
+        <div className="wrap grid grid-cols-1 items-start gap-12 lg:grid-cols-[3fr_2fr]">
+          <div>
+            <SectionHeading
+              eyebrow="How to apply"
+              title="Send Us Your Résumé"
+              intro="Submit a résumé and cover letter, or contact us to discuss employment opportunities."
+            />
+            <Reveal delay={0.1} className="mt-8 flex flex-wrap gap-3">
+              <Link href="/contact" className="btn-red">
+                Submit a Résumé
+              </Link>
+              <a href={site.phoneHref} className="btn-ghost-dark">
+                Call {site.phone}
+              </a>
+            </Reveal>
+          </div>
+          <Reveal delay={0.2}>
+            <div className="border border-silver/50 bg-white p-7">
               <h3 className="font-heading text-lg font-extrabold uppercase text-jet">
-                How to apply
+                Good to know
               </h3>
               <span className="red-rule mt-3 h-0.5 w-10" />
               <p className="mt-4 text-sm leading-relaxed">
-                Submit a résumé and cover letter, or contact us to discuss
-                employment opportunities.
+                Compensation and benefits depend on your qualifications and
+                assessment.
               </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link href="/contact" className="btn-red">
-                  Submit a Résumé
-                </Link>
-                <a href={site.phoneHref} className="btn-ghost-dark">
-                  Call {site.phone}
-                </a>
-              </div>
+              <p className="mt-3 text-sm leading-relaxed">
+                Please note: current openings are subject to confirmation.
+                Contact us to ask about present availability.
+              </p>
             </div>
           </Reveal>
         </div>

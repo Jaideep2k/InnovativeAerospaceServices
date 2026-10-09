@@ -42,7 +42,7 @@ export default function ServicesPage() {
           <SectionHeading
             eyebrow="What we do"
             title="Nine Services, One Shop"
-            intro="Everything below is performed in-house at Kelowna International Airport, or at your location where arrangements can be made. Choose a service for full detail."
+            intro="Everything below is performed in-house at Kelowna International Airport, or at your location when arrangements are made. Choose a service for full detail."
           />
           <Stagger className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((s) => (
@@ -91,6 +91,9 @@ export default function ServicesPage() {
           <Reveal delay={0.1} className="mt-8 flex flex-wrap gap-4">
             <Link href="/helicopter-avionics-electrical" className="btn-ghost-light">
               Helicopter Avionics &amp; Electrical
+            </Link>
+            <Link href="/fixed-wing-avionics-electrical" className="btn-ghost-light">
+              Fixed-Wing Avionics &amp; Electrical
             </Link>
             <Link href="/garmin-dealer" className="btn-ghost-light">
               Authorized Garmin Dealer

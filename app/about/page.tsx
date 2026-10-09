@@ -108,7 +108,7 @@ export default function AboutPage() {
             <Reveal delay={0.15}>
               <p className="mt-6 max-w-xl text-sm leading-relaxed text-silver">
                 A note on engineering: IAS does not perform regulated
-                engineering work directly. Where a project requires it,
+                engineering work directly. When a project requires it,
                 engineering is supplied by registered third-party engineering
                 firms. We help you plan, coordinate, document, install and
                 complete the project.
@@ -178,9 +178,9 @@ export default function AboutPage() {
             <Image
               src="/brand/garmin-logo.png"
               alt="Garmin logo: IAS is an authorized Garmin Aviation dealer"
-              width={892}
-              height={240}
-              className="h-9 w-auto"
+              width={1200}
+              height={173}
+              className="h-[22px] w-auto"
             />
             <Image
               src="/brand/aea-logo.png"
@@ -189,6 +189,14 @@ export default function AboutPage() {
               height={240}
               className="h-11 w-auto"
             />
+          </Reveal>
+          <Reveal className="mt-10 border-t border-silver/40 pt-6">
+            <Link
+              href="/dealers"
+              className="text-sm font-semibold text-aerored underline underline-offset-4 hover:text-jet"
+            >
+              Our dealers →
+            </Link>
           </Reveal>
         </div>
       </section>
@@ -199,7 +207,7 @@ export default function AboutPage() {
           <SectionHeading
             eyebrow="Where we work"
             title="Kelowna Hangar. Your Hangar. The Field."
-            intro={`Based at ${site.address.facility}, we assist customers at our Kelowna facility, at your hangar or location, in the field, and at remote operating locations when arrangements can be made.`}
+            intro={`Based at ${site.address.facility}, we assist customers at our Kelowna facility, at your hangar or location, in the field, and at remote operating locations when arrangements are made.`}
           />
           <Reveal className="mt-8">
             <Link href="/contact" className="btn-red">

@@ -5,9 +5,13 @@ import Hero from "@/components/sections/Hero";
 import ServiceBand from "@/components/sections/ServiceBand";
 import SectionHeading from "@/components/ui/SectionHeading";
 import AogBand from "@/components/ui/AogBand";
+import DowntimeCallout from "@/components/ui/DowntimeCallout";
+import YouTubeEmbed from "@/components/ui/YouTubeEmbed";
 import Reveal from "@/components/motion/Reveal";
 import Stagger from "@/components/motion/Stagger";
 import { site } from "@/lib/site";
+import { rotaryMakers } from "@/lib/aircraft";
+import { videos, youtubeId } from "@/lib/media";
 
 export const metadata: Metadata = pageMeta({
   title: "Helicopter Avionics & Electrical Services",
@@ -15,6 +19,19 @@ export const metadata: Metadata = pageMeta({
     "Helicopter electrical maintenance, wiring repairs, complete rotary-wing rewires, avionics installation and lighting system repairs for commercial helicopter operators, based at Kelowna International Airport, BC.",
   path: "/helicopter-avionics-electrical",
 });
+
+/** In the client's order of priority; the band fills column by column so it reads top to bottom. */
+const helicopterServices = [
+  "Avionics installation and upgrades",
+  "Complete and partial rewires",
+  "Modification support",
+  "Electrical troubleshooting",
+  "Wiring harness assembly and installations",
+  "Lighting system repairs",
+  "Inspection support",
+  "Laser marked wire",
+  "“Weight loss” program",
+];
 
 const whyIas = [
   "Experienced aviation technicians",
@@ -34,6 +51,11 @@ const operations = [
   "Tourism",
   "Remote aviation operations",
 ];
+
+const video = videos.overview;
+const videoId = youtubeId(video.youtubeId);
+// Until a video is added, the section only appears in development (as a placeholder).
+const showVideo = videoId !== null || process.env.NODE_ENV !== "production";
 
 export default function HelicopterPage() {
   return (
@@ -65,19 +87,10 @@ export default function HelicopterPage() {
         id="services"
         eyebrow="What we do"
         title="Helicopter Services"
-        intro="Electrical and avionics work on light, medium and heavy helicopters, at our Kelowna facility, at your hangar, or in the field where arrangements can be made."
-        items={[
-          "Electrical troubleshooting",
-          "Wiring repairs and replacement",
-          "Complete and partial rotary-wing rewires",
-          "Avionics installation and upgrades",
-          "Lighting system repairs",
-          "Wiring harness construction and installation",
-          "Laser-marked aircraft wire",
-          "Inspection support",
-          "Modification support",
-        ]}
-        note="We offer the fastest rewire in the industry, so aircraft downtime is reduced. Note that IAS does not perform regulated engineering work directly. Where engineering is required, it is supplied by registered third-party engineering firms."
+        intro="Electrical and avionics work on light, medium and heavy helicopters, at our Kelowna facility, at your hangar, or in the field when arrangements are made."
+        items={helicopterServices}
+        fillColumns
+        note="We offer the fastest rewire in the industry, so aircraft downtime is reduced. Note that IAS does not perform regulated engineering work directly. When engineering is required, it is supplied by registered third-party engineering firms."
         image="/images/home/Innovative-Aerospace-rewire-services.jpg"
         imageAlt="Helicopter cockpit instrument panel serviced by IAS"
         cta="Discuss a Helicopter Project"
@@ -90,7 +103,7 @@ export default function HelicopterPage() {
         id="rewires"
         eyebrow="Rotary-wing rewires"
         title="Complete Helicopter Rewiring"
-        intro="Aging wiring on a working helicopter shows up as intermittent faults, unreliable avionics and repeat squawks. We perform complete and partial rewires, replacing aging wiring, connectors and circuit protection, remediating corrosion and damage, and marking every wire in-house for the maintenance life that follows."
+        intro="Aging wiring on helicopters shows up as “gremlins”: intermittent faults, unreliable avionics and repeat snags. We perform complete and partial rewires, replacing aging wiring, connectors and circuit protection, and remediating corrosion and damage."
         benefits={[
           "Improved system reliability",
           "Enhanced safety",
@@ -106,13 +119,31 @@ export default function HelicopterPage() {
         ctaHref="/services/aircraft-rewiring"
       />
 
+      <DowntimeCallout cta="Ask About Turnaround" ctaHref="/contact#estimate" />
+
+      {/* Video: hidden on the live site until a link is set in lib/media.ts */}
+      {showVideo && (
+        <section id="video" className="scroll-mt-28 py-16">
+          <div className="wrap grid items-center gap-10 lg:grid-cols-[1fr_1.35fr]">
+            <SectionHeading
+              eyebrow="See how it works"
+              title="A Complete Rewire, Start to Finish"
+              intro="Watch a Bell 412 Classic completely rewired at our Kelowna facility: main airframe, dual 3-axis autopilot, avionics and utilities, completed in 60 days."
+            />
+            <Reveal delay={0.1}>
+              <YouTubeEmbed id={videoId} title={video.title} poster={video.poster} autoplayInView />
+            </Reveal>
+          </div>
+        </section>
+      )}
+
       {/* Operations supported */}
       <section className="bg-charcoal py-16 text-white">
         <div className="wrap">
           <SectionHeading
             eyebrow="Who we support"
             title="Working Helicopters, Working Operators"
-            intro="We support commercial helicopter fleets across the Okanagan and Southern British Columbia, and beyond, where arrangements can be made."
+            intro="We support commercial helicopter fleets across the Okanagan and Southern British Columbia, and beyond, when arrangements are made."
             dark
           />
           <Stagger className="mt-10 flex flex-wrap gap-3">
@@ -125,6 +156,19 @@ export default function HelicopterPage() {
               </span>
             ))}
           </Stagger>
+          <Reveal delay={0.1} className="mt-10 border-t border-white/15 pt-6">
+            <h3 className="font-heading text-xs font-bold uppercase tracking-[0.18em] text-white">
+              Helicopters we work on
+            </h3>
+            <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm text-silver">
+              {rotaryMakers.map((maker) => (
+                <li key={maker.name} className="flex items-center gap-2.5">
+                  <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 bg-aerored" />
+                  {maker.name}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </div>
       </section>
 

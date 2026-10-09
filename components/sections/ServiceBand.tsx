@@ -19,6 +19,8 @@ type ServiceBandProps = {
   ctaHref?: string;
   flip?: boolean;
   dark?: boolean;
+  /** Fill the item list column by column, so an ordered list reads top to bottom. */
+  fillColumns?: boolean;
 };
 
 export default function ServiceBand({
@@ -36,6 +38,7 @@ export default function ServiceBand({
   ctaHref,
   flip = false,
   dark = false,
+  fillColumns = false,
 }: ServiceBandProps) {
   return (
     <section
@@ -49,7 +52,11 @@ export default function ServiceBand({
           <SectionHeading eyebrow={eyebrow} title={title} intro={intro} dark={dark} />
           {items && (
             <Stagger
-              className="mt-7 grid gap-x-8 gap-y-2.5 sm:grid-cols-2"
+              className={
+                fillColumns
+                  ? "mt-7 gap-x-8 sm:columns-2 [&>*]:mb-2.5 [&>*]:break-inside-avoid"
+                  : "mt-7 grid gap-x-8 gap-y-2.5 sm:grid-cols-2"
+              }
               stagger={0.04}
               y={16}
             >

@@ -30,8 +30,8 @@ export default function GarminDealerPage() {
     <>
       <Hero
         compact
-        image="/images/home/Garmin-GR500.jpg"
-        imageAlt="Garmin avionics display installed in an aircraft instrument panel"
+        image="/images/garmin/garmin-jet-crew-flight-deck.jpg"
+        imageAlt="Flight crew in a jet cockpit fitted with Garmin avionics"
         words={["Authorized", "Garmin", "Dealer"]}
         sub="Kelowna's only Garmin dealer. Whether you're upgrading a single component or undertaking a complete cockpit modernization, we help you select, install and integrate the right Garmin solution for your aircraft."
         badge={
@@ -39,9 +39,9 @@ export default function GarminDealerPage() {
             <Image
               src="/brand/garmin-logo-white.png"
               alt="Garmin"
-              width={892}
-              height={240}
-              className="h-6 w-auto"
+              width={1200}
+              height={173}
+              className="h-4 w-auto"
             />
             <p className="font-heading text-xs font-bold uppercase tracking-[0.22em] text-white">
               Authorized Aviation Dealer
@@ -68,9 +68,9 @@ export default function GarminDealerPage() {
                 <Image
                   src="/brand/garmin-logo.png"
                   alt="Garmin logo: IAS Avionics is an authorized Garmin Aviation dealer"
-                  width={892}
-                  height={240}
-                  className="h-12 w-auto"
+                  width={1200}
+                  height={173}
+                  className="h-7 w-auto"
                 />
                 <Link href="/contact#estimate" className="btn-red">
                   Discuss a Garmin Upgrade
@@ -81,8 +81,8 @@ export default function GarminDealerPage() {
           <Reveal delay={0.2}>
             <div className="relative aspect-[4/3] overflow-hidden">
               <Image
-                src="/images/services/avionics-services-kelowna.jpg"
-                alt="Helicopter instrument panel with avionics connectors during an installation at IAS"
+                src="/images/garmin/garmin-retrofit-panel.jpg"
+                alt="Garmin touchscreen flight displays and navigators retrofitted into a general aviation panel"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
@@ -109,8 +109,8 @@ export default function GarminDealerPage() {
           "Traffic and terrain awareness systems",
           "Flight data management solutions",
         ]}
-        image="/images/home/Innovative-Aerospace-Services-jets-rewiring.jpg"
-        imageAlt="Corporate jet in flight"
+        image="/images/garmin/garmin-electronic-instruments.jpg"
+        imageAlt="Garmin electronic flight instruments replacing round gauges in an instrument panel"
         cta="Ask About a Product"
         ctaHref="/contact#estimate"
         flip

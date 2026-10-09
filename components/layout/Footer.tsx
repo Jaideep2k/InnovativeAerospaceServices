@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import { site, nav } from "@/lib/site";
+import { site, nav, directionsHref } from "@/lib/site";
 import Reveal from "@/components/motion/Reveal";
+import LocationMap from "@/components/ui/LocationMap";
 
 /**
  * Flat inventory of every page, for the footer link grid. The footer is where
@@ -22,6 +23,23 @@ const footerLinks: { href: string; label: string }[] = (() => {
   }
   push("/laser-marked-wire-order-form", "Laser Marked Wire Order Form");
   return out;
+})();
+
+/**
+ * Footer email rows. Inboxes that share an address collapse into one row
+ * ("General & laser wire"), so the same address is never listed twice.
+ */
+const footerEmails: { label: string; email: string }[] = (() => {
+  const rows: { label: string; email: string }[] = [];
+  for (const { label, email } of [
+    { label: "General", email: site.contactEmail },
+    { label: "Laser wire", email: site.laserWireEmail },
+  ]) {
+    const match = rows.find((r) => r.email === email);
+    if (match) match.label = `${match.label} & ${label.toLowerCase()}`;
+    else rows.push({ label, email });
+  }
+  return rows;
 })();
 
 export default function Footer() {
@@ -62,12 +80,13 @@ export default function Footer() {
         />
         <div className="wrap relative grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
           <div>
+            {/* Dark-background version of the header logo: white lettering, red swoosh kept. */}
             <Image
-              src="/brand/ias-logo.png"
+              src="/brand/ias-logo-on-dark.png"
               alt="Innovative Aerospace Services logo"
-              width={440}
-              height={90}
-              className="h-auto w-56 brightness-0 invert"
+              width={445}
+              height={84}
+              className="h-auto w-56"
             />
             <p className="mt-4 text-sm leading-relaxed">
               Specialized avionics and electrical services for rotary-wing and
@@ -94,6 +113,16 @@ export default function Footer() {
               <br />
               {site.address.country}
             </address>
+            <LocationMap className="mt-5 h-40" />
+            <a
+              href={directionsHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-1 inline-flex min-h-[44px] items-center gap-2 font-heading text-xs font-bold uppercase tracking-[0.16em] text-white transition-colors hover:text-aerored"
+            >
+              Get directions <span aria-hidden="true">→</span>
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
           </div>
 
           <div>
@@ -129,12 +158,14 @@ export default function Footer() {
                   {site.aogEmail}
                 </a>
               </li>
-              <li>
-                Laser marked wire:{" "}
-                <a href={`mailto:${site.laserWireEmail}`} className="hover:text-white">
-                  {site.laserWireEmail}
-                </a>
-              </li>
+              {footerEmails.map((row) => (
+                <li key={row.email}>
+                  {row.label}:{" "}
+                  <a href={`mailto:${row.email}`} className="hover:text-white">
+                    {row.email}
+                  </a>
+                </li>
+              ))}
             </ul>
             <nav aria-label="Footer" className="mt-6 grid grid-cols-2 gap-x-4 gap-y-2">
               {footerLinks.map((item) => (

@@ -11,7 +11,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = pageMeta({
   title: "AOG: Aircraft on Ground Support",
   description:
-    "Aircraft on Ground support from IAS Avionics in Kelowna, BC. Email aog@iasavionics.ca or call 778-753-0250. Commercial-aircraft AOG requests are treated as a priority.",
+    "Aircraft on Ground support from IAS Avionics in Kelowna, BC. Email aog@iasavionics.ca or call 778-753-0250. AOG situations are treated as a priority.",
   path: "/aog",
 });
 
@@ -20,10 +20,10 @@ export default function AogPage() {
     <>
       <Hero
         compact
-        image="/images/aog/iasavionics-aircraft-on-ground-service.jpg"
-        imageAlt="Aircraft on the ground awaiting AOG support"
+        image="/images/aog/helicopter-grounded-on-ramp.jpg"
+        imageAlt="Twin-engine helicopter parked on a fog-covered airport ramp"
         words={["Aircraft", "on", "Ground?"]}
-        sub="AOG situations are expensive and disruptive, especially for commercial operators. We treat commercial-aircraft AOG requests as a priority and work to return your aircraft to service as quickly as practical."
+        sub="We treat AOG situations as a priority and work to return your aircraft to service as quickly as possible at our Kelowna facility, your hangar, or at remote operating locations when arrangements are made."
       >
         <a href={`mailto:${site.aogEmail}`} className="btn-red">
           Email {site.aogEmail}
@@ -76,12 +76,12 @@ export default function AogPage() {
                   d: `Email ${site.aogEmail} or call ${site.phone}. Saturday and Sunday AOG service is available.`,
                 },
                 {
-                  t: "Commercial operators prioritized",
-                  d: "Commercial-aircraft AOG requests are treated as a priority.",
+                  t: "AOG situations prioritized",
+                  d: "AOG situations are treated as a priority. Tell us the aircraft type, the snag and where it's sitting, and we'll work to return it to service as quickly as possible.",
                 },
                 {
                   t: "Support where it's needed",
-                  d: "At our Kelowna facility, your hangar, in the field, or at remote operating locations when arrangements can be made.",
+                  d: "At our Kelowna facility, your hangar, in the field, or at remote operating locations when arrangements are made.",
                 },
               ].map((s) => (
                 <div key={s.t} className="border-l-4 border-aerored pl-5">

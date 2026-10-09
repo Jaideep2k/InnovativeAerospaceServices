@@ -1,16 +1,29 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Hero from "@/components/sections/Hero";
 import ServiceBand from "@/components/sections/ServiceBand";
 import SectionHeading from "@/components/ui/SectionHeading";
 import AogBand from "@/components/ui/AogBand";
+import DowntimeCallout from "@/components/ui/DowntimeCallout";
 import Reveal from "@/components/motion/Reveal";
+import GarminFeature from "@/components/services/GarminFeature";
+import DesignConsultation from "@/components/services/DesignConsultation";
 import { pageMeta } from "@/lib/meta";
 import { services, servicePages, getService, serviceHref } from "@/lib/services";
 import { site } from "@/lib/site";
 
 type Params = { params: Promise<{ slug: string }> };
+
+/**
+ * Page-specific sections, keyed by slug: `lead` renders above the main
+ * service band, `follow` directly below it.
+ */
+const extras: Record<string, { lead?: ReactNode; follow?: ReactNode }> = {
+  avionics: { lead: <GarminFeature />, follow: <DesignConsultation /> },
+  "aircraft-rewiring": { follow: <DowntimeCallout /> },
+};
 
 export function generateStaticParams() {
   return servicePages.map((s) => ({ slug: s.slug }));
@@ -34,15 +47,16 @@ export default async function ServiceDetailPage({ params }: Params) {
 
   // Everything else, so each page feeds the others rather than dead-ending.
   const others = services.filter((s) => s.id !== service.id);
+  const extra = extras[slug] ?? {};
 
   return (
     <>
       <Hero
         compact
-        image={service.card.image}
-        imageAlt={service.card.alt}
+        image={service.hero?.image ?? service.card.image}
+        imageAlt={service.hero?.alt ?? service.card.alt}
         words={service.title.split(" ")}
-        sub={service.card.text}
+        sub={service.heroSub ?? service.card.text}
       >
         <Link href="/contact#estimate" className="btn-red">
           Request an Estimate
@@ -66,6 +80,8 @@ export default async function ServiceDetailPage({ params }: Params) {
         </nav>
       </div>
 
+      {extra.lead}
+
       <ServiceBand
         id={service.id}
         eyebrow={service.eyebrow}
@@ -80,6 +96,8 @@ export default async function ServiceDetailPage({ params }: Params) {
         cta={service.cta}
         ctaHref={service.ctaHref}
       />
+
+      {extra.follow}
 
       {/* Talk to us */}
       <section className="bg-charcoal py-14 text-white">

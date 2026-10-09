@@ -6,12 +6,12 @@ import Hero from "@/components/sections/Hero";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/motion/Reveal";
 import ContactForm from "@/components/forms/ContactForm";
-import { site } from "@/lib/site";
+import { site, directionsHref } from "@/lib/site";
+import LocationMap from "@/components/ui/LocationMap";
 
 export const metadata: Metadata = pageMeta({
   title: "Contact",
-  description:
-    "Contact IAS Avionics at Kelowna International Airport (CYLW), 1-6280 Airport Way, Kelowna, BC. Call 778-753-0250 or send a general inquiry.",
+  description: `Contact IAS Avionics at Kelowna International Airport (CYLW), ${site.address.street}, ${site.address.city}, ${site.address.region}. Call ${site.phone} or send a general inquiry.`,
   path: "/contact",
 });
 
@@ -53,7 +53,18 @@ export default function ContactPage() {
                 {site.address.country}
               </address>
 
-              <dl className="mt-7 space-y-3 text-sm">
+              <LocationMap tone="light" className="mt-6 h-56 sm:h-64" />
+              <a
+                href={directionsHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1 inline-flex min-h-[44px] items-center gap-2 font-heading text-xs font-bold uppercase tracking-[0.16em] text-aerored transition-colors hover:text-jet"
+              >
+                Get directions <span aria-hidden="true">→</span>
+                <span className="sr-only">(opens in a new tab)</span>
+              </a>
+
+              <dl className="mt-6 space-y-3 text-sm">
                 <div>
                   <dt className="font-heading text-xs font-bold uppercase tracking-[0.16em] text-jet">
                     Phone
@@ -61,6 +72,16 @@ export default function ContactPage() {
                   <dd>
                     <a href={site.phoneHref} className="font-semibold text-aerored">
                       {site.phone}
+                    </a>
+                  </dd>
+                </div>
+                <div>
+                  <dt className="font-heading text-xs font-bold uppercase tracking-[0.16em] text-jet">
+                    General inquiries
+                  </dt>
+                  <dd>
+                    <a href={`mailto:${site.contactEmail}`} className="font-semibold text-aerored">
+                      {site.contactEmail}
                     </a>
                   </dd>
                 </div>
@@ -137,7 +158,7 @@ export default function ContactPage() {
           <Reveal>
             <p className="max-w-2xl font-heading text-2xl font-extrabold uppercase leading-snug tracking-tight">
               Field support available across the Okanagan, Southern BC and
-              beyond, where arrangements can be made.
+              beyond, when arrangements are made.
             </p>
           </Reveal>
         </div>

@@ -1,4 +1,4 @@
-import { site } from "@/lib/site";
+import { site, mapsHref } from "@/lib/site";
 import { faq } from "@/lib/faq";
 
 function JsonLd({ data }: { data: Record<string, unknown> }) {
@@ -37,7 +37,21 @@ export function LocalBusinessJsonLd() {
         slogan: site.tagline,
         url: site.url,
         telephone: site.phone,
-        email: site.aogEmail,
+        email: site.contactEmail,
+        contactPoint: [
+          {
+            "@type": "ContactPoint",
+            contactType: "customer service",
+            telephone: site.phone,
+            email: site.contactEmail,
+          },
+          {
+            "@type": "ContactPoint",
+            contactType: "AOG support",
+            telephone: site.phone,
+            email: site.aogEmail,
+          },
+        ],
         foundingDate: String(site.established),
         description:
           "Specialized avionics and electrical services for rotary-wing and fixed-wing aircraft: installations, aircraft rewiring, wiring harnesses, laser wire marking, troubleshooting, repairs and recertifications at Kelowna International Airport (CYLW).",
@@ -49,6 +63,7 @@ export function LocalBusinessJsonLd() {
           postalCode: site.address.postal,
           addressCountry: "CA",
         },
+        hasMap: mapsHref,
         areaServed: [
           { "@type": "Place", name: "Okanagan" },
           { "@type": "Place", name: "British Columbia" },

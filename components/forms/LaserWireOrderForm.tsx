@@ -1,31 +1,55 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { wireCatalog, findWire } from "@/lib/wireCatalog";
+import { site } from "@/lib/site";
 import Honeypot from "@/components/forms/Honeypot";
 
+/**
+ * One line of the IAS order template (WIRE CODE · LENGTH (") · WIRE TYPE · QTY).
+ * markedCode is the template's WIRE CODE: free text to laser-print on the wire.
+ * wireType is the catalogue code from lib/wireCatalog.ts.
+ */
 type Row = {
-  code: string;
+  id: number;
+  markedCode: string;
+  wireType: string;
   length: string;
   qty: string;
 };
 
 type Status = "idle" | "loading" | "success" | "error";
 
-const emptyRow: Row = { code: "", length: "", qty: "" };
+const FIELDS_HINT = "marked wire code, wire type, length and quantity";
+
+const blankRow = (id: number): Row => ({ id, markedCode: "", wireType: "", length: "", qty: "" });
+
+const filled = (r: Row) => ({
+  markedCode: r.markedCode.trim(),
+  wireType: r.wireType,
+  length: r.length.trim(),
+  qty: r.qty.trim(),
+});
+
+/** Grow a textarea to fit its text; rows={2} stays the minimum height. */
+function fitToContent(el: HTMLTextAreaElement) {
+  el.style.height = "auto";
+  el.style.height = `${el.scrollHeight + el.offsetHeight - el.clientHeight}px`;
+}
 
 export default function LaserWireOrderForm() {
-  const [rows, setRows] = useState<Row[]>([{ ...emptyRow }]);
+  const nextId = useRef(1);
+  const [rows, setRows] = useState<Row[]>(() => [blankRow(0)]);
   const [contact, setContact] = useState({ name: "", email: "", phone: "", notes: "" });
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [trap, setTrap] = useState("");
   const [startedAt] = useState(() => Date.now());
 
-  const setRow = (i: number, patch: Partial<Row>) =>
+  const setRow = (i: number, patch: Partial<Omit<Row, "id">>) =>
     setRows((r) => r.map((row, idx) => (idx === i ? { ...row, ...patch } : row)));
 
-  const addRow = () => setRows((r) => [...r, { ...emptyRow }]);
+  const addRow = () => setRows((r) => [...r, blankRow(nextId.current++)]);
   const removeRow = (i: number) =>
     setRows((r) => (r.length > 1 ? r.filter((_, idx) => idx !== i) : r));
 
@@ -33,12 +57,21 @@ export default function LaserWireOrderForm() {
     e.preventDefault();
     setErrorMsg("");
 
-    const validRows = rows.filter((r) => r.code && r.length && r.qty);
+    // Untouched lines are ignored; a line that is only partly filled is an error.
+    const lines = rows.map(filled);
+    const partial = lines.findIndex((r) => {
+      const n = [r.markedCode, r.wireType, r.length, r.qty].filter(Boolean).length;
+      return n > 0 && n < 4;
+    });
+    if (partial !== -1) {
+      setStatus("error");
+      setErrorMsg(`Please complete wire line ${partial + 1} (${FIELDS_HINT}).`);
+      return;
+    }
+    const validRows = lines.filter((r) => r.markedCode && r.wireType && r.length && r.qty);
     if (validRows.length === 0) {
       setStatus("error");
-      setErrorMsg(
-        "Please complete at least one wire line (wire code, length and quantity)."
-      );
+      setErrorMsg(`Please complete at least one wire line (${FIELDS_HINT}).`);
       return;
     }
 
@@ -51,11 +84,7 @@ export default function LaserWireOrderForm() {
           contact,
           website: trap,
           startedAt,
-          rows: validRows.map((r) => ({
-            ...r,
-            wireType: findWire(r.code)?.description ?? "",
-            milSpec: findWire(r.code)?.milSpec ?? "",
-          })),
+          rows: validRows,
         }),
       });
       if (!res.ok) {
@@ -160,31 +189,56 @@ export default function LaserWireOrderForm() {
           Marked wire requested
         </legend>
         <p className="mb-5 text-sm text-charcoal/80">
-          Fill out each field per marked wire you are requesting. Field names
-          match the IAS laser wire order form: WIRE CODE · LENGTH (&quot;) ·
-          WIRE TYPE · QTY.
+          Fill out one line per marked wire you are requesting.{" "}
+          <strong>Marked wire code</strong> is the text to laser-print on the
+          wire, exactly as it should appear; <strong>wire type</strong> is the
+          wire it is printed on (see Wire Types below). On the downloadable
+          order form these are the WIRE CODE and WIRE TYPE columns.
         </p>
 
         <div className="space-y-4">
           {rows.map((row, i) => {
-            const wire = findWire(row.code);
+            const wire = findWire(row.wireType);
             return (
               <div
-                key={i}
-                className="grid gap-4 border border-silver/60 bg-white p-5 sm:grid-cols-[2fr_1fr_1fr_auto]"
+                key={row.id}
+                className="grid gap-4 border border-silver/60 bg-white p-5 sm:grid-cols-[minmax(0,1fr)_7rem_5rem_auto] sm:items-start"
               >
+                <div className="sm:col-span-4">
+                  <label htmlFor={`lw-marked-${i}`} className="label">
+                    Marked wire code <span className="text-aerored">*</span>
+                  </label>
+                  <textarea
+                    id={`lw-marked-${i}`}
+                    rows={2}
+                    className="input block resize-y"
+                    value={row.markedCode}
+                    onChange={(e) => {
+                      fitToContent(e.currentTarget);
+                      setRow(i, { markedCode: e.target.value });
+                    }}
+                    aria-describedby={`lw-marked-hint-${i}`}
+                    spellCheck={false}
+                    autoCorrect="off"
+                    autoCapitalize="off"
+                    disabled={status === "loading"}
+                  />
+                  <p id={`lw-marked-hint-${i}`} className="mt-2 text-xs text-charcoal/70">
+                    Exactly what to print on the wire.
+                  </p>
+                </div>
                 <div>
-                  <label htmlFor={`lw-code-${i}`} className="label">
-                    Wire code <span className="text-aerored">*</span>
+                  <label htmlFor={`lw-type-${i}`} className="label">
+                    Wire type <span className="text-aerored">*</span>
                   </label>
                   <select
-                    id={`lw-code-${i}`}
+                    id={`lw-type-${i}`}
                     className="input"
-                    value={row.code}
-                    onChange={(e) => setRow(i, { code: e.target.value })}
+                    value={row.wireType}
+                    onChange={(e) => setRow(i, { wireType: e.target.value })}
                     disabled={status === "loading"}
                   >
-                    <option value="">Select a wire code…</option>
+                    <option value="">Select a wire type…</option>
                     {wireCatalog.map((cat) => (
                       <optgroup key={cat.category} label={cat.category}>
                         {cat.wires.map((w) => (
@@ -197,7 +251,7 @@ export default function LaserWireOrderForm() {
                   </select>
                   {wire && (
                     <p className="mt-2 text-xs text-charcoal/70">
-                      WIRE TYPE: {wire.description}
+                      {wire.description}
                       {wire.milSpec ? ` · ${wire.milSpec}` : ""}
                     </p>
                   )}
@@ -228,7 +282,8 @@ export default function LaserWireOrderForm() {
                     disabled={status === "loading"}
                   />
                 </div>
-                <div className="flex items-end">
+                {/* Top padding = label height, so the button lines up with the inputs. */}
+                <div className="flex sm:pt-[1.375rem]">
                   <button
                     type="button"
                     onClick={() => removeRow(i)}
@@ -257,8 +312,8 @@ export default function LaserWireOrderForm() {
       {status === "error" && (
         <p role="alert" className="mt-6 border-l-4 border-aerored bg-aerored/5 p-4 text-sm font-semibold text-aerored">
           {errorMsg}
-          {!errorMsg.includes("nancy@iasavionics.ca") &&
-            " If the problem persists, download the order form below and email it to nancy@iasavionics.ca."}
+          {!errorMsg.includes(site.laserWireEmail) &&
+            ` If the problem persists, download the order form and email it to ${site.laserWireEmail}.`}
         </p>
       )}
 
