@@ -63,6 +63,11 @@ export function LocalBusinessJsonLd() {
           postalCode: site.address.postal,
           addressCountry: "CA",
         },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: site.geo.lat,
+          longitude: site.geo.lng,
+        },
         hasMap: mapsHref,
         areaServed: [
           { "@type": "Place", name: "Okanagan" },

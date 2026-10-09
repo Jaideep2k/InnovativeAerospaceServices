@@ -13,16 +13,23 @@ export const site = {
   /** Laser marked wire orders and general inquiries (contact form) go here. */
   laserWireEmail: "kim@iasavionics.ca",
   contactEmail: "kim@iasavionics.ca",
+  /** Written exactly as on IAS's Google Business Profile (October 2026). */
   address: {
-    facility: "CYLW Kelowna International Airport",
-    street: "1-6280 Lapointe Drive",
+    facility: "Kelowna International Airport (YLW)",
+    street: "6280 Lapointe Dr #1",
     city: "Kelowna",
     region: "BC",
     postal: "V1V 1S1",
     country: "Canada",
   },
-  /** Google Maps search for the facility (footer map, "We've moved" notice). */
-  mapsQuery: "6280 Lapointe Drive, Kelowna, BC V1V 1S1",
+  /**
+   * IAS's Google Maps listing. The query (business name plus address)
+   * resolves to that listing, so map embeds and directions pin the building
+   * rather than a street-address guess; `cid` opens the listing itself.
+   */
+  mapsQuery: "Innovative Aerospace Services Ltd, 6280 Lapointe Dr #1, Kelowna, BC V1V 1S1",
+  googleMapsCid: "4177433530003511892",
+  geo: { lat: 49.96725, lng: -119.38379 },
   /**
    * "We've moved" notice shown once per visitor. It retires itself after
    * `until`, so it never needs to be remembered and taken down by hand.
@@ -38,8 +45,8 @@ export const site = {
   ],
 } as const;
 
-/** Opens the facility in Google Maps (new tab). */
-export const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.mapsQuery)}`;
+/** Opens IAS's Google Maps listing (new tab). */
+export const mapsHref = `https://maps.google.com/?cid=${site.googleMapsCid}`;
 
 /** Turn-by-turn directions to the facility (new tab). */
 export const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(site.mapsQuery)}`;

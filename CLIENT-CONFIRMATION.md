@@ -75,20 +75,18 @@ there is a record, not to block them.
 
 ## Address — MOVED (October 2026)
 
-- IAS has moved from Airport Way to **1-6280 Lapointe Drive, Kelowna, BC
+- IAS has moved from Airport Way to **6280 Lapointe Dr #1, Kelowna, BC
   V1V 1S1** (client, October 2026). The site now shows Lapointe Drive
   everywhere, a small Google map with a pin in the footer and on /contact, and
   a one-time "We've moved" pop-up for visitors that retires itself after
   30 June 2027 (`site.moveNotice` in `lib/site.ts`).
-- **Confirm the exact unit number, spelling and postal code.** The client
-  wrote "LaPointe Drive"; the site uses the common "Lapointe Drive" spelling
-  and carries over `1-6280` and `V1V 1S1` from the earlier Lapointe address.
-  The pop-up names the old street ("Airport Way") but not the old number.
-- Is the new location still described as "CYLW Kelowna International
-  Airport"? The site still says so.
-- Third-party listings (Google Business Profile, AEA directory, Garmin dealer
-  locator) must be updated too, or the map pin and local search will point to
-  the old address.
+- **Confirmed (October 2026):** the site now matches IAS's Google Business
+  Profile exactly: Kelowna International Airport (YLW), 6280 Lapointe Dr #1,
+  Kelowna, BC V1V 1S1. The maps pin that listing ("Innovative Aerospace
+  Services Ltd"), and the structured data carries its coordinates.
+- Google is already updated. Other listings (AEA directory, Garmin dealer
+  locator) should use the same wording, or local search will see two
+  addresses.
 
 ## Certifications / credentials (shown on About + Home)
 - AMO 85-17 — still current?
